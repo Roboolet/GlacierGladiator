@@ -5,7 +5,7 @@
 
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
+    sf::RenderWindow window(sf::VideoMode(1200, 800), "Glacier Gladiator");
 
     sf::Texture texture;
     if (!texture.loadFromFile("assets/fireball.png")) {}
