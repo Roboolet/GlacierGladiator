@@ -19,5 +19,5 @@ LeaVec2 & LeaVec2::Normalized() {
 	return *this;
 }
 float LeaVec2::Distance(LeaVec2 other) { return LeaVec2(x - other.x, y - other.y).Magnitude(); }
-float LeaVec2::Distance(LeaVec2 other) { return LeaVec2(x - other.x, y - other.y).MagnitudeSqr(); }
+float LeaVec2::DistanceSqr(LeaVec2 other) { return LeaVec2(x - other.x, y - other.y).MagnitudeSqr(); }
 float LeaVec2::Dot(LeaVec2 other) { return (x * other.x + y * other.y); }
