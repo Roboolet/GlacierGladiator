@@ -4,6 +4,9 @@
 
 class GameObject {
 public:
+	// constructors
+	GameObject();
+
 	// fields
 	std::string name;
 	LeaVec2 position;
