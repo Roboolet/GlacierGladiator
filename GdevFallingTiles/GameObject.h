@@ -6,6 +6,7 @@ class GameObject {
 public:
 	// constructors
 	GameObject();
+	virtual ~GameObject();
 
 	// fields
 	std::string name;

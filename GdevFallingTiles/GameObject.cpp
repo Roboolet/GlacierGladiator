@@ -2,6 +2,7 @@
 #include "GameObject.h"
 
 void GameObject::Awaken() {
+	name = "unnamed";
 	LoadResources();
 	OnAwaken();
 }

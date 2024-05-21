@@ -22,8 +22,8 @@ public:
 	float Dot(LeaVec2 _other);
 
 	// basic operators
-	LeaVec2 Mul(float _scalar);
-	LeaVec2 Add(float _value);
-	LeaVec2 Sub(float _value);
-	LeaVec2 Div(float _value);
+	LeaVec2 operator*(float _scalar);
+	LeaVec2 operator+(LeaVec2 _value);
+	LeaVec2 operator-(LeaVec2 _value);
+	LeaVec2 operator/(float _value);
 };
