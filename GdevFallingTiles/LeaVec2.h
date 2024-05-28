@@ -6,7 +6,7 @@ public:
 	// constructors
 	LeaVec2(void);
 	LeaVec2(float _x, float _y);
-	LeaVec2(LeaVec2& _original);
+	LeaVec2(LeaVec2* _original);
 
 	// members
 	float x;
@@ -22,8 +22,8 @@ public:
 	float Dot(LeaVec2 _other);
 
 	// basic operators
-	LeaVec2 operator*(float _scalar);
-	LeaVec2 operator+(LeaVec2 _value);
-	LeaVec2 operator-(LeaVec2 _value);
-	LeaVec2 operator/(float _value);
+	LeaVec2 operator *(float _scalar);
+	LeaVec2 operator +(LeaVec2 _value);
+	LeaVec2 operator -(LeaVec2 _value);
+	LeaVec2 operator /(float _value);
 };
