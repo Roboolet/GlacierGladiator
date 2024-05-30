@@ -1,6 +1,6 @@
 #pragma once
-#include "LeaVec2.h"
 #include <SFML/Graphics.hpp>
+#include "LeaMath.h"
 
 class GameObject {
 public:
