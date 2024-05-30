@@ -1,4 +1,5 @@
 #pragma once
+#include "LeaMath.h"
 
 	class LeaVec2 {
 	public:
@@ -21,8 +22,9 @@
 		float Dot(LeaVec2 _other);
 
 		// basic operators
-		LeaVec2 operator *(float _scalar);
-		LeaVec2 operator +(LeaVec2 _value);
-		LeaVec2 operator -(LeaVec2 _value);
-		LeaVec2 operator /(float _value);
+		LeaVec2* operator *(float _scalar);
+		LeaVec2* operator *(LeaMatrix3x2 _m);
+		LeaVec2* operator +(LeaVec2 _value);
+		LeaVec2* operator -(LeaVec2 _value);
+		LeaVec2* operator /(float _value);
 	};
