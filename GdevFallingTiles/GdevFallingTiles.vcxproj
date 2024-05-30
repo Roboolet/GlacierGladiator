@@ -133,14 +133,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Circle.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="LeaVec2.cpp" />
     <ClCompile Include="Player.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Circle.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="LeaVec2.h" />
     <ClInclude Include="Player.h" />
