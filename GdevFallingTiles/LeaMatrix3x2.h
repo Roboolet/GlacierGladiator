@@ -7,6 +7,9 @@ public:
 	LeaMatrix3x2();
 	virtual ~LeaMatrix3x2();
 
+	LeaMatrix3x2 operator*(LeaMatrix3x2 _m);
+	LeaVec2 operator*(LeaVec2& _m);
+
 private:
 	// static methods
 	static LeaMatrix3x2* MakeRotator(float _theta);

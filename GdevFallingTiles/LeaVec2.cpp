@@ -23,31 +23,26 @@ float LeaVec2::DistanceSqr(LeaVec2 _other) { return LeaVec2(x - _other.x, y - _o
 float LeaVec2::Dot(LeaVec2 _other) { return (x * _other.x + y * _other.y); }
 
 // operator definitions
-LeaVec2* LeaVec2::operator* (float _scalar)
+LeaVec2 LeaVec2::operator* (float _scalar)
 {
 	this->x = this->x * _scalar;
 	this->y = this->y * _scalar;
 	return this;
 }
-LeaVec2* LeaVec2::operator* (LeaMatrix3x2 _m)
-{
-	this->x = this->x * _m.rowI.x + this->y * _m.rowJ.x + _m.rowK.x;
-	this->y = this->x * _m.rowI.y + this->y * _m.rowJ.y + _m.rowK.y;
-	return this;
-}
-LeaVec2* LeaVec2::operator+ (LeaVec2 _value)
+
+LeaVec2 LeaVec2::operator+ (LeaVec2 _value)
 {
 	this->x + _value.x;
 	this->y + _value.y;
 	return this;
 }
-LeaVec2* LeaVec2::operator- (LeaVec2 _value)
+LeaVec2 LeaVec2::operator- (LeaVec2 _value)
 {
 	this->x - _value.x;
 	this->y - _value.y;
 	return this;
 }
-LeaVec2* LeaVec2::operator/ (float _value)
+LeaVec2 LeaVec2::operator/ (float _value)
 {
 	if (this->x != 0 && _value != 0) { this->x = this->x / _value; }
 	if (this->y != 0 && _value != 0) { this->y = this->y / _value; }

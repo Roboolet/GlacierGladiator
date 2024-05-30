@@ -12,6 +12,16 @@ LeaMatrix3x2::LeaMatrix3x2() {
 LeaMatrix3x2::~LeaMatrix3x2() {
 }
 
+LeaMatrix3x2 LeaMatrix3x2::operator*(LeaMatrix3x2 _m) {
+
+}
+LeaVec2 LeaMatrix3x2::operator* (LeaVec2& _v)
+{
+	_v.x = _v.x * this->rowI.x + _v.y * this->rowJ.x + this->rowK.x;
+	_v.y = _v.x * this->rowI.y + _v.y * this->rowJ.y + this->rowK.y;
+	return _v;
+}
+
 LeaMatrix3x2* LeaMatrix3x2::MakeRotator(float _theta) {
 	LeaMatrix3x2* mat = new LeaMatrix3x2();
 	mat->rowI.x = cosf(_theta);
