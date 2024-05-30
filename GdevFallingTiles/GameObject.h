@@ -23,7 +23,6 @@ public:
 	void Update(float _deltaTime);
 
 protected:
-	// implementations should override these
 	virtual void LoadResources();
 	virtual void OnAwaken();
 	virtual void OnUpdate(float _deltaTime);
