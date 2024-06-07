@@ -1,16 +1,17 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
-#include "Circle.h"
-#include <string>
+#include "Scene.h"
 
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(1200, 800), "Glacier Gladiator");
+    sf::RenderWindow window(sf::VideoMode(192, 108), "Glacier Gladiator", sf::Style::Fullscreen);
 
-    sf::Texture texture;
+    /*sf::Texture texture;
     if (!texture.loadFromFile("assets/fireball.png")) {}
     sf::Sprite sprite;
-    sprite.setTexture(texture);
+    sprite.setTexture(texture);*/
+
+    Scene* scene = new Scene();
 
     while (window.isOpen())
     {
@@ -21,10 +22,13 @@ int main()
                 window.close();
         }
 
-        window.clear();
-        window.draw(sprite);
+        //window.clear();
+        //window.draw(sprite);
         window.display();
     }
+
+    scene->CloseScene();
+    delete(scene);
 
     return 0;
 }

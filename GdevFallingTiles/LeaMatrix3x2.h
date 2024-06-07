@@ -1,9 +1,10 @@
 #pragma once
-#include "LeaMath.h"
 
 class LeaMatrix3x2 {
 public:
-	LeaVec2 rowI, rowJ, rowK;
+	LeaVec2 rowI;
+	LeaVec2 rowJ;
+	LeaVec2 rowK;
 	LeaMatrix3x2();
 	virtual ~LeaMatrix3x2();
 

@@ -13,7 +13,7 @@ LeaMatrix3x2::~LeaMatrix3x2() {
 }
 
 LeaMatrix3x2 LeaMatrix3x2::operator*(LeaMatrix3x2 _m) {
-
+	return _m;
 }
 LeaVec2 LeaMatrix3x2::operator* (LeaVec2& _v)
 {

@@ -1,5 +1,4 @@
 #pragma once
-#include "LeaMath.h"
 
 	class LeaVec2 {
 	public:
