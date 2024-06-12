@@ -8,6 +8,7 @@ class Scene {
 public:
 	Scene();
 	float creationTime;
+	float lastFrameTime;
 
 	// objects
 	std::vector<GameObject> objects;

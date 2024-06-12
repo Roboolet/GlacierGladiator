@@ -9,8 +9,7 @@ int main()
     sf::RenderWindow window(sf::VideoMode(192, 108), "Glacier Gladiator");
     //sf::RenderWindow window(sf::VideoMode(192, 108), "Glacier Gladiator", sf::Style::Fullscreen);
 
-    window.setTitle("Glacier Gladiator!");
-    window.setFramerateLimit(60);
+    window.setVerticalSyncEnabled(true);
     srand(129835);
 
     // create the input mappings
@@ -47,8 +46,10 @@ int main()
             InputSystem::GetInstance().ProcessEvent(event);
         }
 
-        scene.Update();
+        scene.Update();     
 
+        // the combination of renderers using BlendAdd and not calling the window clear makes
+        // a cool smearing effect
         scene.Render(window);
         window.display();
     }

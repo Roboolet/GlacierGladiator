@@ -1,5 +1,6 @@
 #include "BoxRenderer.h"
 #include <SFML/Graphics.hpp>
+#include "InputSystem.h"
 
 BoxRenderer::BoxRenderer(float _coverage) : coverage(_coverage)
 {
@@ -21,8 +22,9 @@ void BoxRenderer::OnDraw(sf::RenderWindow& _window, LeaVec2 _screenPosition)
 		
 		LeaVec2 pt = GetRandomPoint();
 
-		img.setPixel(pt.x, pt.y, sf::Color::Yellow);
+		img.setPixel(pt.x, pt.y, sf::Color(0,255,255,255));
 	}
+	
 
 	// this sucks
 	sf::Texture tex;
@@ -30,8 +32,7 @@ void BoxRenderer::OnDraw(sf::RenderWindow& _window, LeaVec2 _screenPosition)
 	tex.update(img);
 	sf::Sprite sprite;
 	sprite.setTexture(tex);
-
-	_window.draw(sprite);
+	_window.draw(sprite, sf::BlendAdd);
 }
 
 LeaVec2 BoxRenderer::GetRandomPoint()

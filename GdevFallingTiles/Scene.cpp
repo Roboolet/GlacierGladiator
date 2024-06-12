@@ -3,6 +3,7 @@
 
 Scene::Scene() {
 	// create player, floor, UI
+	creationTime = std::clock();
 
 	// awaken the objects
 	auto size = objects.size();
@@ -14,7 +15,8 @@ Scene::Scene() {
 void Scene::Update() {
 	// periodically create asteroids
 
-	float dt = difftime(time(0), creationTime);
+	float dt = std::clock() - lastFrameTime;
+	lastFrameTime = std::clock();
 
 	// update objects
 	auto size = objects.size();
