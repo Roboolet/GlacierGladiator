@@ -27,6 +27,14 @@ void GameObject::OnUpdate(float _deltaTime) {
 
 }
 
+GameObject::GameObject()
+{
+}
+
+GameObject::GameObject(std::vector<Component> _components) : components(_components)
+{
+}
+
 GameObject::~GameObject() {
 	std::cout << "Destroyed GameObject " << name << this << std::endl;
 }

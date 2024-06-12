@@ -6,7 +6,7 @@ class GameObject;
 
 class Component {
 public:
-	Component(GameObject* owner);
+	Component();
 	virtual ~Component();
 
 	// merely a reference to the gameobject that owns this

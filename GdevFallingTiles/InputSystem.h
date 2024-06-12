@@ -10,9 +10,6 @@ struct InputMapping {
 	std::string name;
 
 	InputMapping(sf::Keyboard::Key _k, std::string _n) : key(_k), name(_n){}
-	std::pair<sf::Keyboard::Key, std::string> GetPair() {
-		return std::pair<sf::Keyboard::Key, std::string>(key, name);
-	}
 };
 
 class InputSystem {
