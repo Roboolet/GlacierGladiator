@@ -11,13 +11,15 @@ Scene::Scene() {
 	}
 }
 
-void Scene::Update(float _deltaTime) {
+void Scene::Update() {
 	// periodically create asteroids
+
+	float dt = difftime(time(0), creationTime);
 
 	// update objects
 	auto size = objects.size();
 	for (int i = 0; i < size; i++) {
-		objects[i].Update(_deltaTime);
+		objects[i].Update(dt);
 	}
 }
 

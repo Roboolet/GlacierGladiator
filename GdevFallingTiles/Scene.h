@@ -7,10 +7,11 @@
 class Scene {
 public:
 	Scene();
+	float creationTime;
 
 	// objects
 	std::vector<GameObject> objects;
-	void Update(float _deltaTime);
+	void Update();
 
 	// camera and rendering
 	LeaVec2 cameraPosition;

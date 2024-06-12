@@ -33,8 +33,8 @@ int main()
     // create objects
     // this too should ideally be done in some format like json or xml
     Scene scene;
-    scene.objects.emplace_back(std::vector<Component>{
-        (BoxRenderer(0.5)) });
+    scene.objects.emplace_back(std::vector<Component*>{ 
+        new BoxRenderer(0.5) });
 
     while (window.isOpen())
     {
@@ -47,6 +47,9 @@ int main()
 
             InputSystem::GetInstance().ProcessEvent(event);
         }
+
+        scene.Update();
+        scene.Render(window);
 
         //window.clear();
         //window.draw(sprite);

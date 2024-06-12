@@ -3,7 +3,6 @@
 
 void GameObject::Awaken() {
 	name = "unnamed";
-	OnAwaken();
 }
 
 LeaMatrix3x2 GameObject::GetPRS() {
@@ -12,29 +11,26 @@ LeaMatrix3x2 GameObject::GetPRS() {
 }
 
 void GameObject::Update(float _deltaTime) {
-	OnUpdate(_deltaTime);
+	for (int i = 0; i < components.size(); i++) {
+		components[i]->OnUpdate(_deltaTime);
+	}
 }
 
 void GameObject::Draw(sf::RenderWindow& _window, LeaVec2 _screenPosition) {
-	
-}
-
-
-void GameObject::OnAwaken() {
-
-}
-void GameObject::OnUpdate(float _deltaTime) {
-
+	for (int i = 0; i < components.size(); i++) {
+		components[i]->OnDraw(_window, _screenPosition);
+	}
 }
 
 GameObject::GameObject()
 {
 }
 
-GameObject::GameObject(std::vector<Component> _components) : components(_components)
+GameObject::GameObject(std::vector<Component*> _components) : components(_components)
 {
 }
 
 GameObject::~GameObject() {
+	components.clear();
 	std::cout << "Destroyed GameObject " << name << this << std::endl;
 }
