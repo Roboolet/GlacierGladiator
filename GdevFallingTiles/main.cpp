@@ -1,6 +1,7 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include "Scene.h"
+#include "InputSystem.h"
 
 int main()
 {
@@ -13,13 +14,20 @@ int main()
 
     Scene* scene = new Scene();
 
+    InputMapping inputMappings[] = {InputMapping(sf::Keyboard::Key::A, "Left")};
+    auto len = std::size(inputMappings);
+    InputSystem::GetInstance().Initialize(inputMappings, len);
+
     while (window.isOpen())
     {
+        InputSystem::GetInstance().Advance();
         sf::Event event;
         while (window.pollEvent(event))
         {
             if (event.type == sf::Event::Closed)
                 window.close();
+
+            InputSystem::GetInstance().ProcessEvent(event);
         }
 
         //window.clear();

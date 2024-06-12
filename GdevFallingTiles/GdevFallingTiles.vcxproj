@@ -135,6 +135,7 @@
   <ItemGroup>
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="InputSystem.cpp" />
     <ClCompile Include="LeaMatrix3x2.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="LeaVec2.cpp" />
@@ -143,6 +144,7 @@
   <ItemGroup>
     <ClInclude Include="Component.h" />
     <ClInclude Include="GameObject.h" />
+    <ClInclude Include="InputSystem.h" />
     <ClInclude Include="LeaMath.h" />
     <ClInclude Include="LeaMatrix3x2.h" />
     <ClInclude Include="LeaVec2.h" />
