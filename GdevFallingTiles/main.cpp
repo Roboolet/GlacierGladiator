@@ -5,14 +5,13 @@
 #include "InputSystem.h"
 
 int main()
-{
-    //sf::RenderWindow window(sf::VideoMode(192, 108), "Glacier Gladiator", sf::Style::Fullscreen);
+{    
     sf::RenderWindow window(sf::VideoMode(192, 108), "Glacier Gladiator");
+    //sf::RenderWindow window(sf::VideoMode(192, 108), "Glacier Gladiator", sf::Style::Fullscreen);
 
-    /*sf::Texture texture;
-    if (!texture.loadFromFile("assets/fireball.png")) {}
-    sf::Sprite sprite;
-    sprite.setTexture(texture);*/
+    window.setTitle("Glacier Gladiator!");
+    window.setFramerateLimit(60);
+    srand(129835);
 
     // create the input mappings
     // ideally i'd do this in a json file or something but that's too complicated for now
@@ -34,7 +33,7 @@ int main()
     // this too should ideally be done in some format like json or xml
     Scene scene;
     scene.objects.emplace_back(std::vector<Component*>{ 
-        new BoxRenderer(0.5) });
+        new BoxRenderer(0.01) });
 
     while (window.isOpen())
     {
@@ -49,10 +48,8 @@ int main()
         }
 
         scene.Update();
-        scene.Render(window);
 
-        //window.clear();
-        //window.draw(sprite);
+        scene.Render(window);
         window.display();
     }
 
