@@ -1,6 +1,7 @@
 #include <iostream>
 #include "Scene.h"
 #include <chrono>
+#include "Components.h"
 
 Scene::Scene() {
 	// this is in seconds
@@ -11,6 +12,20 @@ Scene::Scene() {
 	for (int i = 0; i < size; i++) {
 		objects[i].Awaken();
 	}
+}
+
+void Scene::CreateGameScene1()
+{
+	typedef std::vector<Component*> compVec;
+
+	// background
+	Instantiate(LeaVec2(0, 0), LeaVec2(192, 108), compVec{ new BoxRenderer(30, 30) });
+	// floor
+	Instantiate(LeaVec2(0, 50), LeaVec2(192, 20), compVec{ new BoxRenderer(30, 30) });
+	// player
+	Instantiate(LeaVec2(0, 30), LeaVec2(10, 10), compVec{ new BoxRenderer(30, 30) });
+
+	std::cout << "Objects instantiated: " << objects.size() << std::endl;
 }
 
 void Scene::Update() {
@@ -24,6 +39,13 @@ void Scene::Update() {
 	for (int i = 0; i < size; i++) {
 		objects[i].Update(elapsed.count());
 	}
+}
+
+GameObject* Scene::Instantiate(LeaVec2 _pos, LeaVec2 _sc, std::vector<Component*> _comps)
+{
+	GameObject obj = GameObject(_pos, _sc, _comps);
+	objects.insert(objects.end(), obj);
+	return nullptr;
 }
 
 void Scene::Render(sf::RenderWindow& _window, int resolutionX, int resolutionY) {

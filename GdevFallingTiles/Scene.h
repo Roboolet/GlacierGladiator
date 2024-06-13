@@ -11,9 +11,12 @@ public:
 	std::chrono::steady_clock::time_point creationTime;
 	std::chrono::steady_clock::time_point lastFrameTime;
 
+	void CreateGameScene1();
+
 	// objects
 	std::vector<GameObject> objects;
 	void Update();
+	GameObject* Instantiate(LeaVec2, LeaVec2, std::vector<Component*>);
 
 	// camera and rendering
 	LeaVec2 cameraPosition;
