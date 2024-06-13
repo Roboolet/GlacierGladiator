@@ -11,7 +11,7 @@ void GameObject::Awaken() {
 	return mat;
 }*/
 
-void GameObject::Update(float _deltaTime) {
+void GameObject::Update(double _deltaTime) {
 	for (int i = 0; i < components.size(); i++) {
 		components[i]->OnUpdate(_deltaTime);
 	}

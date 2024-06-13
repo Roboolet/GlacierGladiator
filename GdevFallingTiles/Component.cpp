@@ -11,7 +11,7 @@ void Component::OnAwaken()
 {
 }
 
-void Component::OnUpdate(float _deltaTime)
+void Component::OnUpdate(double _deltaTime)
 {
 }
 

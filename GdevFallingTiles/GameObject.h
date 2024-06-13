@@ -26,7 +26,7 @@ public:
 	// do not override these, override the
 	// protected ones instead
 	void Awaken();
-	void Update(float _deltaTime);
+	void Update(double _deltaTime);
 	void Draw(sf::RenderWindow& _window, LeaVec2 _screenPosition);
 
 private:

@@ -12,7 +12,7 @@ public:
 	GameObject* gameObject;
 
 	virtual void OnAwaken();
-	virtual void OnUpdate(float _deltaTime);
+	virtual void OnUpdate(double _deltaTime);
 
 	// use interfaces for this?
 	virtual void OnDraw(sf::RenderWindow& _window, LeaVec2 _screenPosition);

@@ -9,7 +9,7 @@ fillsPerSecond(_fillsPerSecond)
 	timer = 0;
 }
 
-void BoxRenderer::OnUpdate(float _deltaTime)
+void BoxRenderer::OnUpdate(double _deltaTime)
 {
 	sizeX = gameObject->scale.x;
 	sizeY = gameObject->scale.y;

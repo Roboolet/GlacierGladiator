@@ -19,11 +19,11 @@ void Scene::CreateGameScene1()
 	typedef std::vector<Component*> compVec;
 
 	// background
-	Instantiate(LeaVec2(0, 0), LeaVec2(192, 108), compVec{ new BoxRenderer(30, 30) });
+	Instantiate(LeaVec2(0, 0), LeaVec2(192, 108), compVec{ new BoxRenderer(3, 60) });
 	// floor
-	Instantiate(LeaVec2(0, 50), LeaVec2(192, 20), compVec{ new BoxRenderer(30, 30) });
+	Instantiate(LeaVec2(0, 50), LeaVec2(192, 20), compVec{ new BoxRenderer(20, 60) });
 	// player
-	Instantiate(LeaVec2(0, 30), LeaVec2(10, 10), compVec{ new BoxRenderer(30, 30) });
+	Instantiate(LeaVec2(0, 30), LeaVec2(10, 10), compVec{ new BoxRenderer(20, 60) });
 
 	std::cout << "Objects instantiated: " << objects.size() << std::endl;
 }
@@ -31,8 +31,9 @@ void Scene::CreateGameScene1()
 void Scene::Update() {
 	// periodically create asteroids
 
-	std::chrono::duration<float> elapsed = std::chrono::steady_clock::now() - lastFrameTime;
-	lastFrameTime = std::chrono::steady_clock::now();
+	auto now = std::chrono::steady_clock::now();
+	std::chrono::duration<double> elapsed = now - lastFrameTime;
+	lastFrameTime = now;
 
 	// update objects
 	auto size = objects.size();
