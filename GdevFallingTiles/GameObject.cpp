@@ -23,26 +23,12 @@ void GameObject::Draw(sf::RenderWindow& _window, LeaVec2 _screenPosition) {
 	}
 }
 
-Component* GameObject::GetComponent(std::string _typeName)
-{
-	Component* comp = nullptr;
-	for (int i = 0; i < components.size(); i++) {
-		if (typeid(*components[i]).name() == _typeName) {
-			comp = components[i];
-		}
-	}
-
-	return comp;
-}
-
 void GameObject::InitializeComponents()
 {
 	for (int i = 0; i < components.size(); i++) {
 		components[i]->gameObject = this;
-		componentMap.insert(std::pair<std::string, int>(typeid(*components[i]).name(), i));
 		std::cout << "Initialized component: " << typeid(*components[i]).name() << std::endl;		
-	}
-	
+	}	
 }
 
 GameObject::GameObject()

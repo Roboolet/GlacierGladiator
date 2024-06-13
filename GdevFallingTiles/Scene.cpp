@@ -1,7 +1,7 @@
 #include <iostream>
+#include "Components.h"
 #include "Scene.h"
 #include <chrono>
-#include "Components.h"
 
 Scene::Scene() {
 	// this is in seconds

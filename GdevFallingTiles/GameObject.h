@@ -2,8 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include "LeaMath.h"
 #include <typeinfo>
-
-class Component;
+#include "Components.h"
 
 class GameObject {
 public:
@@ -30,9 +29,20 @@ public:
 	void Update(double _deltaTime);
 	void Draw(sf::RenderWindow& _window, LeaVec2 _screenPosition);
 
-	Component* GetComponent(std::string);
+	template <typename T>
+		inline T* GetComponent()
+		{
+			T* comp = nullptr;
+			for (int i = 0; i < components.size(); i++) {
+				if (typeid(*components[i]).name() == "*_type.name()") {
+					comp = components[i];
+					break;
+				}
+			}
+			return comp;
+		}
 
 private:
-	std::map<std::string, int> componentMap;
 	void InitializeComponents();
 };
+

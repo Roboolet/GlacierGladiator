@@ -1,6 +1,6 @@
 #pragma once
-#include "GameObject.h"
 #include "Component.h"
+#include "GameObject.h"
 
 class Player : public Component {
 public:
