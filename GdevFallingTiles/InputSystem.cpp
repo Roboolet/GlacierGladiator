@@ -14,30 +14,48 @@ void InputSystem::Initialize(InputMapping _inputMappings[], int _length)
 	}
 }
 
+// Advance the process, this makes the Started and Canceled phases work
 void InputSystem::Advance()
 {
+	// someone explain to me how this for loop works
+	for (auto const& x : inputs) {
+		if (inputs[x.first] == InputPhase::Started) { inputs[x.first] = InputPhase::Held; }
+		else if (inputs[x.first] == InputPhase::Canceled) { inputs[x.first] = InputPhase::Off; }
+	}
 }
 
-void InputSystem::ProcessEvent(sf::Event)
+void InputSystem::ProcessEvent(sf::Event _event)
 {
+	if (_event.type == sf::Event::KeyPressed) {
+		if (inputMap.find(_event.key.code) != inputMap.end()) {
+			std::string nm = inputMap[_event.key.code];
+			inputs[nm] = InputPhase::Started;
+		}
+	}
+	else if (_event.type == sf::Event::KeyReleased) {
+		if (inputMap.find(_event.key.code) != inputMap.end()) {
+			std::string nm = inputMap[_event.key.code];
+			inputs[nm] = InputPhase::Canceled;
+		}
+	}
 }
 
 InputPhase InputSystem::GetButtonPhase(std::string _key)
 {
-	return InputPhase();
+	return inputs[_key];
 }
 
 bool InputSystem::GetButton(std::string _key)
 {
-	return false;
+	return (inputs[_key] == InputPhase::Held);
 }
 
 bool InputSystem::GetButtonDown(std::string _key)
 {
-	return false;
+	return (inputs[_key] == InputPhase::Started);
 }
 
 bool InputSystem::GetButtonUp(std::string _key)
 {
-	return false;
+	return (inputs[_key] == InputPhase::Canceled);
 }
