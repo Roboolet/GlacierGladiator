@@ -3,9 +3,11 @@
 
 class BoxRenderer : public Component {
 public:
-	BoxRenderer(int, float);
+	BoxRenderer(int, float, sf::Color, sf::BlendMode);
 	int pixelsPerFill;
 	float fillsPerSecond;
+	sf::Color fillColor;
+	sf::BlendMode blendMode;
 
 	virtual void OnUpdate(double _deltaTime) override;
 	virtual void OnDraw(sf::RenderWindow& _window, LeaVec2 _screenPosition) override;

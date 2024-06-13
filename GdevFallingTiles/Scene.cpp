@@ -19,11 +19,14 @@ void Scene::CreateGameScene1()
 	typedef std::vector<Component*> compVec;
 
 	// background
-	Instantiate(LeaVec2(0, 0), LeaVec2(192, 108), compVec{ new BoxRenderer(3, 60) });
+	Instantiate(LeaVec2(0, 0), LeaVec2(192, 108), compVec{ 
+		new BoxRenderer(30, 60, sf::Color(73,35,29,75), sf::BlendAdd) });
 	// floor
-	Instantiate(LeaVec2(0, 50), LeaVec2(192, 20), compVec{ new BoxRenderer(20, 60) });
+	Instantiate(LeaVec2(0, 50), LeaVec2(192, 20), compVec{ 
+		new BoxRenderer(30, 60, sf::Color(16,150,197,75), sf::BlendAdd) });
 	// player
-	Instantiate(LeaVec2(0, 30), LeaVec2(10, 10), compVec{ new BoxRenderer(20, 60) });
+	Instantiate(LeaVec2(0, 30), LeaVec2(10, 10), compVec{ 
+		new BoxRenderer(120, 60, sf::Color(110,150,170,255), sf::BlendNone) });
 
 	std::cout << "Objects instantiated: " << objects.size() << std::endl;
 }

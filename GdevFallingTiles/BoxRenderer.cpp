@@ -3,8 +3,8 @@
 #include "InputSystem.h"
 #include <iostream>
 
-BoxRenderer::BoxRenderer(int _pixelsPerFill, float _fillsPerSecond) : pixelsPerFill(_pixelsPerFill),
-fillsPerSecond(_fillsPerSecond)
+BoxRenderer::BoxRenderer(int _pixelsPerFill, float _fillsPerSecond, sf::Color _fillColor, sf::BlendMode _blendMode)
+	: pixelsPerFill(_pixelsPerFill), fillsPerSecond(_fillsPerSecond), fillColor(_fillColor), blendMode(_blendMode)
 {
 	timer = 0;
 }
@@ -34,7 +34,7 @@ void BoxRenderer::OnDraw(sf::RenderWindow& _window, LeaVec2 _screenPosition)
 
 			LeaVec2 pt = GetRandomPoint();
 
-			img.setPixel(pt.x, pt.y, sf::Color(0, 255, 255, 60));
+			img.setPixel(pt.x, pt.y, fillColor);
 		}
 
 		// this sucks
@@ -47,7 +47,7 @@ void BoxRenderer::OnDraw(sf::RenderWindow& _window, LeaVec2 _screenPosition)
 		// set position, screen position 0 should have it centered
 		sprite.setPosition(_screenPosition.x - sizeX / 2, _screenPosition.y - sizeY / 2);
 
-		_window.draw(sprite, sf::BlendAdd);
+		_window.draw(sprite, blendMode);
 		canFill = false;
 	}
 }
