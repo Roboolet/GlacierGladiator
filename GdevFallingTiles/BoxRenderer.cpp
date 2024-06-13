@@ -1,44 +1,55 @@
 #include "BoxRenderer.h"
 #include <SFML/Graphics.hpp>
 #include "InputSystem.h"
+#include <iostream>
 
-BoxRenderer::BoxRenderer(float _coverage) : coverage(_coverage)
+BoxRenderer::BoxRenderer(int _pixelsPerFill, float _fillsPerSecond) : pixelsPerFill(_pixelsPerFill),
+fillsPerSecond(_fillsPerSecond)
 {
+	timer = 0;
 }
 
 void BoxRenderer::OnUpdate(float _deltaTime)
 {
+	sizeX = gameObject->scale.x;
+	sizeY = gameObject->scale.y;
+
+	timer = timer + _deltaTime;
+	if (timer > lastFillTime + (1 / fillsPerSecond)) {
+		canFill = true;
+		lastFillTime = timer;
+	}
 }
 
 void BoxRenderer::OnDraw(sf::RenderWindow& _window, LeaVec2 _screenPosition)
 {
-	sizeX = gameObject->scale.x;
-	sizeY = gameObject->scale.y;
+	if (canFill) {
 
-	// create image
-	sf::Image img;
-	img.create(sizeX, sizeY);
+		// create image
+		sf::Image img;
+		img.create(sizeX, sizeY);
 
-	// set pixels
-	int pixlAmt = sizeX * sizeY * coverage;
-	for (int i = 0; i < pixlAmt; i++) {
-		
-		LeaVec2 pt = GetRandomPoint();
+		// set pixels
+		for (int i = 0; i < pixelsPerFill; i++) {
 
-		img.setPixel(pt.x, pt.y, sf::Color(0,255,255,60));
-	}	
+			LeaVec2 pt = GetRandomPoint();
 
-	// this sucks
-	sf::Texture tex;
-	tex.create(sizeX, sizeY);
-	tex.update(img);
-	sf::Sprite sprite;
-	sprite.setTexture(tex);
+			img.setPixel(pt.x, pt.y, sf::Color(0, 255, 255, 60));
+		}
 
-	// set position, screen position 0 should have it centered
-	sprite.setPosition(_screenPosition.x - sizeX/2, _screenPosition.y - sizeY/2);
+		// this sucks
+		sf::Texture tex;
+		tex.create(sizeX, sizeY);
+		tex.update(img);
+		sf::Sprite sprite;
+		sprite.setTexture(tex);
 
-	_window.draw(sprite, sf::BlendAdd);
+		// set position, screen position 0 should have it centered
+		sprite.setPosition(_screenPosition.x - sizeX / 2, _screenPosition.y - sizeY / 2);
+
+		_window.draw(sprite, sf::BlendAdd);
+		canFill = false;
+	}
 }
 
 LeaVec2 BoxRenderer::GetRandomPoint()

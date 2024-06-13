@@ -2,13 +2,14 @@
 #include <SFML/Graphics.hpp>
 #include "GameObject.h"
 #include "LeaMath.h"
+#include <chrono>
 
 
 class Scene {
 public:
 	Scene();
-	float creationTime;
-	float lastFrameTime;
+	std::chrono::steady_clock::time_point creationTime;
+	std::chrono::steady_clock::time_point lastFrameTime;
 
 	// objects
 	std::vector<GameObject> objects;

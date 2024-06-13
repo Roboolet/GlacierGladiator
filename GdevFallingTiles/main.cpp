@@ -32,12 +32,12 @@ int main()
     // create objects
     // this too should ideally be done in some format like json or xml
     Scene* scene = new Scene();
-    scene->objects.emplace_back(LeaVec2(20, 0), LeaVec2(10, 10), std::vector<Component*>{
-        new BoxRenderer(0.01) });
+    scene->objects.emplace_back(LeaVec2(20, 0), LeaVec2(9, 9), std::vector<Component*>{
+        new BoxRenderer(30, 1) });
     scene->objects.emplace_back(LeaVec2(-20,0), LeaVec2(10, 10), std::vector<Component*>{
-        new BoxRenderer(0.01) });
+        new BoxRenderer(30, 30) });
     scene->objects.emplace_back(LeaVec2(-40, 0), LeaVec2(15, 15), std::vector<Component*>{
-        new BoxRenderer(0.02) });
+        new BoxRenderer(30, 60) });
     std::cout << "Objects instantiated: " << scene->objects.size() << std::endl;
 
     while (window.isOpen())

@@ -1,9 +1,10 @@
 #include <iostream>
 #include "Scene.h"
+#include <chrono>
 
 Scene::Scene() {
-	// create player, floor, UI
-	creationTime = std::clock();
+	// this is in seconds
+	creationTime = std::chrono::steady_clock::now();
 
 	// awaken the objects
 	auto size = objects.size();
@@ -15,13 +16,13 @@ Scene::Scene() {
 void Scene::Update() {
 	// periodically create asteroids
 
-	float dt = std::clock() - lastFrameTime;
-	lastFrameTime = std::clock();
+	std::chrono::duration<float> elapsed = std::chrono::steady_clock::now() - lastFrameTime;
+	lastFrameTime = std::chrono::steady_clock::now();
 
 	// update objects
 	auto size = objects.size();
 	for (int i = 0; i < size; i++) {
-		objects[i].Update(dt);
+		objects[i].Update(elapsed.count());
 	}
 }
 
