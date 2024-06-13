@@ -1,4 +1,5 @@
 #include "InputSystem.h"
+#include <iostream>
 
 void InputSystem::Initialize(InputMapping _inputMappings[], int _length)
 {
@@ -21,6 +22,8 @@ void InputSystem::Advance()
 	for (auto const& x : inputs) {
 		if (inputs[x.first] == InputPhase::Started) { inputs[x.first] = InputPhase::Held; }
 		else if (inputs[x.first] == InputPhase::Canceled) { inputs[x.first] = InputPhase::Off; }
+
+		//std::cout << "input " << x.first << " = " << x.second << std::endl;
 	}
 }
 

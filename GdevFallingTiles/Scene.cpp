@@ -20,13 +20,14 @@ void Scene::CreateGameScene1()
 
 	// background
 	Instantiate(LeaVec2(0, 0), LeaVec2(192, 108), compVec{ 
-		new BoxRenderer(30, 60, sf::Color(73,35,29,75), sf::BlendAdd) });
+		new BoxRenderer(150, 60, sf::Color(73,35,29,255), sf::BlendAdd) });
 	// floor
 	Instantiate(LeaVec2(0, 50), LeaVec2(192, 20), compVec{ 
-		new BoxRenderer(30, 60, sf::Color(16,150,197,75), sf::BlendAdd) });
+		new BoxRenderer(800, 60, sf::Color(16,150,197,75), sf::BlendAdd) });
 	// player
-	Instantiate(LeaVec2(0, 30), LeaVec2(10, 10), compVec{ 
-		new BoxRenderer(120, 60, sf::Color(110,150,170,255), sf::BlendNone) });
+	Instantiate(LeaVec2(0, 30), LeaVec2(10, 10), compVec{
+		new BoxRenderer(100, 60, sf::Color(110,150,170,255), sf::BlendAdd),
+		new Player() });
 
 	std::cout << "Objects instantiated: " << objects.size() << std::endl;
 }
@@ -37,11 +38,14 @@ void Scene::Update() {
 	auto now = std::chrono::steady_clock::now();
 	std::chrono::duration<double> elapsed = now - lastFrameTime;
 	lastFrameTime = now;
+	deltaTime = elapsed.count();
+
+	timeSinceStart = (now - creationTime).count();
 
 	// update objects
 	auto size = objects.size();
 	for (int i = 0; i < size; i++) {
-		objects[i].Update(elapsed.count());
+		objects[i].Update(deltaTime);
 	}
 }
 
@@ -53,6 +57,15 @@ GameObject* Scene::Instantiate(LeaVec2 _pos, LeaVec2 _sc, std::vector<Component*
 }
 
 void Scene::Render(sf::RenderWindow& _window, int resolutionX, int resolutionY) {
+
+	// clears the screen every n nanoseconds
+	double m = std::fmod(timeSinceStart, 50000000);
+	if (m < lastFrameScreenClearMod) {
+		_window.clear();
+	}
+
+	lastFrameScreenClearMod = m;
+		
 
 	// draw objects
 	auto size = objects.size();

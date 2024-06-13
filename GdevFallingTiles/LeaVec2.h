@@ -1,6 +1,6 @@
 #pragma once
 
-	class LeaVec2 {
+	struct LeaVec2 {
 	public:
 		// constructors
 		LeaVec2(void);
@@ -21,8 +21,8 @@
 		float Dot(LeaVec2 _other);
 
 		// basic operators
-		LeaVec2 operator *(float _scalar);
-		LeaVec2 operator +(LeaVec2 _value);
-		LeaVec2 operator -(LeaVec2 _value);
-		LeaVec2 operator /(float _value);
+		const LeaVec2 operator *(float _scalar);
+		const LeaVec2 operator +(LeaVec2 _value);
+		const LeaVec2 operator -(LeaVec2 _value);
+		const LeaVec2 operator /(float _value);
 	};

@@ -39,6 +39,6 @@ public:
 
 private:
 	// this seems to be the same as doing InputSystem() {}
-	InputSystem() = default;
+	InputSystem() {};
 
 };

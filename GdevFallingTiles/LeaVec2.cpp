@@ -23,28 +23,24 @@ float LeaVec2::DistanceSqr(LeaVec2 _other) { return LeaVec2(x - _other.x, y - _o
 float LeaVec2::Dot(LeaVec2 _other) { return (x * _other.x + y * _other.y); }
 
 // operator definitions
-LeaVec2 LeaVec2::operator* (float _scalar)
+const LeaVec2 LeaVec2::operator* (float _scalar)
 {
-	this->x = this->x * _scalar;
-	this->y = this->y * _scalar;
-	return this;
+	return LeaVec2(this->x * _scalar, this->y * _scalar);
 }
 
-LeaVec2 LeaVec2::operator+ (LeaVec2 _value)
+const LeaVec2 LeaVec2::operator+ (LeaVec2 _value)
 {
-	this->x + _value.x;
-	this->y + _value.y;
-	return this;
+	return LeaVec2(this->x + _value.x, this->y + _value.y);
 }
-LeaVec2 LeaVec2::operator- (LeaVec2 _value)
+const LeaVec2 LeaVec2::operator- (LeaVec2 _value)
 {
-	this->x - _value.x;
-	this->y - _value.y;
-	return this;
+	return LeaVec2(this->x - _value.x, this->y - _value.y);
 }
-LeaVec2 LeaVec2::operator/ (float _value)
+const LeaVec2 LeaVec2::operator/ (float _value)
 {
-	if (this->x != 0 && _value != 0) { this->x = this->x / _value; }
-	if (this->y != 0 && _value != 0) { this->y = this->y / _value; }
-	return this;
+	float xn = 0;
+	float yn = 0;
+	if (this->x != 0 && _value != 0) { xn = this->x / _value; }
+	if (this->y != 0 && _value != 0) { yn = this->y / _value; }
+	return LeaVec2(xn, yn);
 }

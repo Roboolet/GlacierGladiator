@@ -10,6 +10,8 @@ public:
 	Scene();
 	std::chrono::steady_clock::time_point creationTime;
 	std::chrono::steady_clock::time_point lastFrameTime;
+	double timeSinceStart;
+	double deltaTime;
 
 	void CreateGameScene1();
 
@@ -24,4 +26,7 @@ public:
 	void Render(sf::RenderWindow& _window, int, int);
 
 	void CloseScene();
+
+private:
+	double lastFrameScreenClearMod;
 };
