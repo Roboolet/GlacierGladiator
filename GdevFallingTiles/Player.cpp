@@ -2,9 +2,6 @@
 #include "InputSystem.h"
 #include <iostream>
 
-void Player::OnAwaken()
-{
-}
 
 void Player::OnUpdate(double _deltaTime)
 {

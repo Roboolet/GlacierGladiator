@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "LeaMath.h"
+#include <typeinfo>
 
 class Component;
 
@@ -29,6 +30,9 @@ public:
 	void Update(double _deltaTime);
 	void Draw(sf::RenderWindow& _window, LeaVec2 _screenPosition);
 
+	Component* GetComponent(std::string);
+
 private:
+	std::map<std::string, int> componentMap;
 	void InitializeComponents();
 };

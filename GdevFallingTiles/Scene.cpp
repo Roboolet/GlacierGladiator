@@ -27,7 +27,8 @@ void Scene::CreateGameScene1()
 	// player
 	Instantiate(LeaVec2(0, 30), LeaVec2(10, 10), compVec{
 		new BoxRenderer(100, 60, sf::Color(110,150,170,255), sf::BlendAdd),
-		new Player() });
+		new Player(),
+		new Rigidbody() });
 
 	std::cout << "Objects instantiated: " << objects.size() << std::endl;
 }
@@ -59,6 +60,8 @@ GameObject* Scene::Instantiate(LeaVec2 _pos, LeaVec2 _sc, std::vector<Component*
 void Scene::Render(sf::RenderWindow& _window, int resolutionX, int resolutionY) {
 
 	// clears the screen every n nanoseconds
+	// i wanted to make this game without clears but sadly this
+	// framework is really not made for this
 	double m = std::fmod(timeSinceStart, 50000000);
 	if (m < lastFrameScreenClearMod) {
 		_window.clear();
