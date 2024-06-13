@@ -8,8 +8,9 @@ void Player::OnUpdate(double _deltaTime)
 		gameObject->position = gameObject->position + LeaVec2(-moveSpeed*_deltaTime, 0);
 	}
 	if (InputSystem::GetInstance().GetButton("Right")) {
-		//gameObject->position = gameObject->position + LeaVec2(moveSpeed * _deltaTime, 0);
-		//Rigidbody* rb = gameObject->GetComponent<Rigidbody>();
+		// this sucks
+		Rigidbody* rb = dynamic_cast<Rigidbody*>(gameObject->GetComponent(typeid(Rigidbody).name()));
+		rb->AddForce(LeaVec2(moveSpeed * _deltaTime, 0));
 	}
 	
 }

@@ -23,6 +23,18 @@ void GameObject::Draw(sf::RenderWindow& _window, LeaVec2 _screenPosition) {
 	}
 }
 
+Component* GameObject::GetComponent(std::string _typeName)
+{
+	Component* comp = nullptr;
+	for (int i = 0; i < components.size(); i++) {
+		if (typeid(*components[i]).name() == _typeName) {
+			comp = components[i];
+		}
+	}
+
+	return comp;
+}
+
 void GameObject::InitializeComponents()
 {
 	for (int i = 0; i < components.size(); i++) {
