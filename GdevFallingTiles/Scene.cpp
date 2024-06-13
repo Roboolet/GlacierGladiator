@@ -25,16 +25,17 @@ void Scene::Update() {
 	}
 }
 
-void Scene::Render(sf::RenderWindow& _window) {
+void Scene::Render(sf::RenderWindow& _window, int resolutionX, int resolutionY) {
 
 	// draw objects
 	auto size = objects.size();
 	for (int i = 0; i < size; i++) {
+		GameObject go = objects[i];
 
-		LeaVec2* screenPos= new LeaVec2();
-		objects[i].Draw(_window, screenPos);
-
-		delete(screenPos);
+		float screenW = resolutionX / 2;
+		float screenH = resolutionY / 2;
+		LeaVec2 screenPos = LeaVec2(screenW + go.position.x, screenH + go.position.y);
+		go.Draw(_window, screenPos);
 	}
 
 }

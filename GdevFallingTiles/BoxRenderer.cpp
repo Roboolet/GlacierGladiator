@@ -12,6 +12,9 @@ void BoxRenderer::OnUpdate(float _deltaTime)
 
 void BoxRenderer::OnDraw(sf::RenderWindow& _window, LeaVec2 _screenPosition)
 {
+	sizeX = gameObject->scale.x;
+	sizeY = gameObject->scale.y;
+
 	// create image
 	sf::Image img;
 	img.create(sizeX, sizeY);
@@ -22,9 +25,8 @@ void BoxRenderer::OnDraw(sf::RenderWindow& _window, LeaVec2 _screenPosition)
 		
 		LeaVec2 pt = GetRandomPoint();
 
-		img.setPixel(pt.x, pt.y, sf::Color(0,255,255,255));
-	}
-	
+		img.setPixel(pt.x, pt.y, sf::Color(0,255,255,60));
+	}	
 
 	// this sucks
 	sf::Texture tex;
@@ -32,6 +34,10 @@ void BoxRenderer::OnDraw(sf::RenderWindow& _window, LeaVec2 _screenPosition)
 	tex.update(img);
 	sf::Sprite sprite;
 	sprite.setTexture(tex);
+
+	// set position, screen position 0 should have it centered
+	sprite.setPosition(_screenPosition.x - sizeX/2, _screenPosition.y - sizeY/2);
+
 	_window.draw(sprite, sf::BlendAdd);
 }
 

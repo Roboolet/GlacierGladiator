@@ -6,7 +6,8 @@
 
 int main()
 {    
-    sf::RenderWindow window(sf::VideoMode(192, 108), "Glacier Gladiator");
+    const int resX = 192, resY = 108;
+    sf::RenderWindow window(sf::VideoMode(resX, resY), "Glacier Gladiator");
     //sf::RenderWindow window(sf::VideoMode(192, 108), "Glacier Gladiator", sf::Style::Fullscreen);
 
     window.setVerticalSyncEnabled(true);
@@ -50,7 +51,7 @@ int main()
 
         // the combination of renderers using BlendAdd and not calling the window clear makes
         // a cool smearing effect
-        scene.Render(window);
+        scene.Render(window, resX, resY);
         window.display();
     }
 

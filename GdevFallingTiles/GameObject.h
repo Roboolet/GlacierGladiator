@@ -1,7 +1,8 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include "Component.h"
 #include "LeaMath.h"
+
+class Component;
 
 class GameObject {
 public:
@@ -12,12 +13,12 @@ public:
 
 	// fields
 	std::string name;
-	LeaVec2 position, pivot, scale;
-	float rotation;
+	LeaVec2 position, scale;
+	//float rotation;
 	std::vector<Component*> components;
 
 	// generally useful methods
-	LeaMatrix3x2 GetPRS();
+	//LeaMatrix3x2 GetPRS();
 
 	// do not override these, override the
 	// protected ones instead

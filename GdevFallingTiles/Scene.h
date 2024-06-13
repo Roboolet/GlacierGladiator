@@ -17,7 +17,7 @@ public:
 	// camera and rendering
 	LeaVec2 cameraPosition;
 	float cameraOrthographicSize;
-	void Render(sf::RenderWindow& _window);
+	void Render(sf::RenderWindow& _window, int, int);
 
 	void CloseScene();
 };

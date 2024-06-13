@@ -1,8 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "LeaMath.h"
-
-class GameObject;
+#include "GameObject.h"
 
 class Component {
 public:
