@@ -29,6 +29,7 @@ public:
 	void Update(double _deltaTime);
 	void Draw(sf::RenderWindow& _window, LeaVec2 _screenPosition);
 
+	// i wish i knew how generic types worked in this language
 	Component* GetComponent(std::string);
 
 private:

@@ -2,15 +2,24 @@
 #include <iostream>
 #include "Components.h"
 
+void Player::OnAwaken()
+{
+	// this sucks
+	rb = dynamic_cast<Rigidbody*>(gameObject->GetComponent(typeid(Rigidbody).name()));
+}
+
 void Player::OnUpdate(double _deltaTime)
 {
 	if (InputSystem::GetInstance().GetButton("Left")) {
-		gameObject->position = gameObject->position + LeaVec2(-moveSpeed*_deltaTime, 0);
+		rb->AddForce(LeaVec2(-moveSpeed * _deltaTime, 0));
 	}
-	if (InputSystem::GetInstance().GetButton("Right")) {
-		// this sucks
-		Rigidbody* rb = dynamic_cast<Rigidbody*>(gameObject->GetComponent(typeid(Rigidbody).name()));
+	if (InputSystem::GetInstance().GetButton("Right")) {		
 		rb->AddForce(LeaVec2(moveSpeed * _deltaTime, 0));
 	}
 	
+}
+
+Player::~Player()
+{
+	rb = nullptr;
 }

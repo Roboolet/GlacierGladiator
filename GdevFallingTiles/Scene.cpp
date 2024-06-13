@@ -5,13 +5,7 @@
 
 Scene::Scene() {
 	// this is in seconds
-	creationTime = std::chrono::steady_clock::now();
-
-	// awaken the objects
-	auto size = objects.size();
-	for (int i = 0; i < size; i++) {
-		objects[i].Awaken();
-	}
+	creationTime = std::chrono::steady_clock::now();	
 }
 
 void Scene::CreateGameScene1()
@@ -33,6 +27,7 @@ void Scene::CreateGameScene1()
 	std::cout << "Objects instantiated: " << objects.size() << std::endl;
 }
 
+
 void Scene::Update() {
 	// periodically create asteroids
 
@@ -47,6 +42,15 @@ void Scene::Update() {
 	auto size = objects.size();
 	for (int i = 0; i < size; i++) {
 		objects[i].Update(deltaTime);
+	}
+}
+
+void Scene::Awake()
+{
+	// awaken the objects
+	auto size = objects.size();
+	for (int i = 0; i < size; i++) {
+		objects[i].Awaken();
 	}
 }
 

@@ -4,6 +4,10 @@
 
 void GameObject::Awaken() {
 	name = "unnamed";
+
+	for (int i = 0; i < components.size(); i++) {
+		components[i]->OnAwaken();
+	}
 }
 
 /*LeaMatrix3x2 GameObject::GetPRS() {

@@ -32,6 +32,7 @@ int main()
     // this too should ideally be done in some format like json or xml
     Scene* scene = new Scene();
     scene->CreateGameScene1();
+    scene->Awake();
 
     while (window.isOpen())
     {
