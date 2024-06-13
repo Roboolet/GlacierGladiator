@@ -31,9 +31,14 @@ int main()
 
     // create objects
     // this too should ideally be done in some format like json or xml
-    Scene scene;
-    scene.objects.emplace_back(std::vector<Component*>{ 
+    Scene* scene = new Scene();
+    scene->objects.emplace_back(LeaVec2(20, 0), LeaVec2(10, 10), std::vector<Component*>{
         new BoxRenderer(0.01) });
+    scene->objects.emplace_back(LeaVec2(-20,0), LeaVec2(10, 10), std::vector<Component*>{
+        new BoxRenderer(0.01) });
+    scene->objects.emplace_back(LeaVec2(-40, 0), LeaVec2(15, 15), std::vector<Component*>{
+        new BoxRenderer(0.02) });
+    std::cout << "Objects instantiated: " << scene->objects.size() << std::endl;
 
     while (window.isOpen())
     {
@@ -47,15 +52,16 @@ int main()
             InputSystem::GetInstance().ProcessEvent(event);
         }
 
-        scene.Update();     
+        scene->Update();     
 
         // the combination of renderers using BlendAdd and not calling the window clear makes
         // a cool smearing effect
-        scene.Render(window, resX, resY);
+        scene->Render(window, resX, resY);
         window.display();
     }
 
-    scene.CloseScene();
+    scene->CloseScene();
+    delete(scene);
 
     return 0;
 }

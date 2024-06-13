@@ -50,7 +50,7 @@ LeaVec2 BoxRenderer::GetRandomPoint()
 
 LeaVec2 BoxRenderer::GetPoint(double _uLerp, double _vLerp)
 {
-	int u = (0 * (1.0 - _uLerp)) + (sizeX * _uLerp);
-	int v = (0 * (1.0 - _vLerp)) + (sizeY * _vLerp);
+	float u = (0 * (1.0 - _uLerp)) + (sizeX * _uLerp);
+	float v = (0 * (1.0 - _vLerp)) + (sizeY * _vLerp);
 	return LeaVec2(u,v);
 }

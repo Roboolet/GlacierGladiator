@@ -11,7 +11,7 @@ public:
 
 
 private:
-	int sizeX, sizeY;
+	float sizeX, sizeY;
 	LeaVec2 GetRandomPoint();
 	LeaVec2 GetPoint(double _uLerp, double _vLerp);
 

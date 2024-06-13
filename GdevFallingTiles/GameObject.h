@@ -8,7 +8,10 @@ class GameObject {
 public:
 	// constructors
 	GameObject();
+	GameObject(const GameObject&);
 	GameObject(std::vector<Component*> _components);
+	GameObject(LeaVec2 _position, LeaVec2 _scale,
+		std::vector<Component*> _components);
 	virtual ~GameObject();
 
 	// fields
@@ -25,4 +28,7 @@ public:
 	void Awaken();
 	void Update(float _deltaTime);
 	void Draw(sf::RenderWindow& _window, LeaVec2 _screenPosition);
+
+private:
+	void InitializeComponents();
 };
