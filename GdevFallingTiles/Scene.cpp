@@ -4,8 +4,6 @@
 #include <chrono>
 
 Scene::Scene() {
-	// this is in seconds
-	creationTime = std::chrono::steady_clock::now();	
 }
 
 void Scene::CreateGameScene1()
@@ -19,7 +17,7 @@ void Scene::CreateGameScene1()
 	Instantiate(LeaVec2(0, 50), LeaVec2(192, 20), compVec{ 
 		new BoxRenderer(800, 60, sf::Color(16,150,197,75), sf::BlendAdd) });
 	// player
-	Instantiate(LeaVec2(0, 30), LeaVec2(10, 10), compVec{
+	Instantiate(LeaVec2(0, -20), LeaVec2(10, 10), compVec{
 		new BoxRenderer(100, 60, sf::Color(110,150,170,255), sf::BlendAdd),
 		new Player(),
 		new Rigidbody() });
@@ -34,7 +32,7 @@ void Scene::Update() {
 	auto now = std::chrono::steady_clock::now();
 	std::chrono::duration<double> elapsed = now - lastFrameTime;
 	lastFrameTime = now;
-	deltaTime = elapsed.count();
+	deltaTime =  std::fmin(elapsed.count(), 1);
 
 	timeSinceStart = (now - creationTime).count();
 
@@ -47,6 +45,9 @@ void Scene::Update() {
 
 void Scene::Awake()
 {
+	// this is in seconds
+	creationTime = std::chrono::steady_clock::now();
+
 	// awaken the objects
 	auto size = objects.size();
 	for (int i = 0; i < size; i++) {
