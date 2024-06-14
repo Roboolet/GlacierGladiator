@@ -13,20 +13,35 @@ void Player::OnAwaken()
 void Player::OnUpdate(double _deltaTime)
 {
 	if (rb->collidedLastFrame) {		
+		canJump = true;
+
+		TextRenderer* t = dynamic_cast<TextRenderer*>(gameObject->scene->Find("score")
+			->GetComponent(typeid(TextRenderer).name()));
 		// if above a certain height, gain score (because you break meteors)
-		if (gameObject->position.y < 30 && gameObject->scene->gamestate == Gamestate::Playing) {
-			TextRenderer* t = dynamic_cast<TextRenderer*>(gameObject->scene->Find("score")
-				->GetComponent(typeid(TextRenderer).name()));
-			score += 100;
-			t->text = "Score: " + std::to_string(score);
+		if (gameObject->position.y < 30 && gameObject->scene->gamestate == Gamestate::Playing) {			
+
+			scoreMult++;
+			score += 100*scoreMult;
+			t->text = "Score: " + std::to_string(score) + " ***" + std::to_string(scoreMult);
 
 			// also launch yourself!
-			rb->velocity = LeaVec2(rb->velocity.x, jumpPower);
+			rb->velocity = LeaVec2(-rb->velocity.x, -rb->velocity.y + jumpPower);
 		}
 		// landing on ground
 		else {
-			canJump = true;
+			scoreMult = 0;
+			t->text = "Score: " + std::to_string(score);
 		}
+	}
+
+	// change color based on double jump
+	BoxRenderer* rend = dynamic_cast<BoxRenderer*>(gameObject->
+	GetComponent(typeid(BoxRenderer).name()));
+	if (canJump) {
+		rend->fillColor = sf::Color(110, 150, 255, 255);
+	}
+	else {
+		rend->fillColor = sf::Color(90, 120, 120, 255);
 	}
 
 	// input checks

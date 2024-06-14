@@ -15,6 +15,7 @@ private:
 	const float jumpPower = -0.6;
 
 	int score;
+	int scoreMult;
 	bool canJump = false;
 	Rigidbody* rb;
 };
