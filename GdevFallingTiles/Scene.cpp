@@ -12,18 +12,23 @@ void Scene::CreateGameScene1()
 	typedef std::vector<Component*> compVec;
 
 	// background
-	Instantiate(LeaVec2(0, 0), LeaVec2(192, 108), compVec{ 
+	Instantiate(LeaVec2(-96, -54), LeaVec2(192, 108), compVec{ 
 		new BoxRenderer(150, 60, sf::Color(73,35,29,255), sf::BlendAdd) });
 	// floor
 	Instantiate(LeaVec2(-100, 40), LeaVec2(200, 15), compVec{ 
 		new BoxRenderer(800, 60, sf::Color(36,150,197,125), sf::BlendAdd),
-		new Rigidbody(),
+		new Rigidbody(BodyType::Static),
 		new BoxCollider() });
 	// player
 	Instantiate(LeaVec2(0, -20), LeaVec2(10, 10), compVec{
 		new BoxRenderer(100, 60, sf::Color(110,150,170,255), sf::BlendAdd),
 		new Player(),
-		new Rigidbody(),
+		new Rigidbody(BodyType::Dynamic),
+		new BoxCollider() });
+	// meteor
+	Instantiate(LeaVec2(40, -90), LeaVec2(15, 15), compVec{
+		new BoxRenderer(100, 60, sf::Color(255,100,100,255), sf::BlendAdd),
+		new Rigidbody(BodyType::Kinematic),
 		new BoxCollider() });
 
 	std::cout << "Objects instantiated: " << objects.size() << std::endl;
@@ -42,6 +47,7 @@ void Scene::PhysicsUpdate()
 
 		if (rb != nullptr) {
 			rbs.insert(rbs.end(), rb);
+			rb->collidedLastFrame = false;
 		}
 	}
 
@@ -67,12 +73,19 @@ void Scene::PhysicsUpdate()
 					boxA->topL.y < boxB->topL.y + boxB->height &&
 					boxA->topL.y + boxA->height > boxB->topL.y) {
 					// collision detected
-					std::cout <<
-						" AtopL: " << boxA->topL.x << ", " << boxA->topL.y <<
-						"; BtopL: " << boxB->topL.x << ", " << boxB->topL.y << std::endl <<
-						" AbotR: " << boxA->botR.x << ", " << boxA->botR.y <<
-						"; BbotR: " << boxB->botR.x << ", " << boxB->botR.y <<
-						std::endl;
+
+					rbA->collidedLastFrame = true;
+					rbB->collidedLastFrame = true;
+
+					// restorative force
+					// just assume it came from above, since this only matters for
+					// the player and floor anyways
+					if (rbA->bodyType == BodyType::Dynamic) {
+						rbA->velocity = LeaVec2(rbA->velocity.x, std::min((float)0, rbA->velocity.y));
+					}
+					if (rbB->bodyType == BodyType::Dynamic) {
+						rbB->velocity = LeaVec2(rbB->velocity.x, std::min((float)0, rbA->velocity.y));
+					}
 				}
 				else {
 					// no collision

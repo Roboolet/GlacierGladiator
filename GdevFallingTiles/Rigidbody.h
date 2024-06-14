@@ -10,6 +10,8 @@ enum BodyType{ Static, Kinematic, Dynamic};
 
 class Rigidbody : public Component {
 public:
+	Rigidbody(BodyType);
+
 	LeaVec2 velocity;
 	BodyType bodyType = BodyType::Static;
 	float drag = 0.95;

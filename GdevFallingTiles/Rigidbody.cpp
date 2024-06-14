@@ -2,6 +2,10 @@
 #include "GameObject.h"
 #include <iostream>
 
+Rigidbody::Rigidbody(BodyType _bt) : bodyType(_bt)
+{
+}
+
 void Rigidbody::OnUpdate(double _deltaTime)
 {
 	if (bodyType != BodyType::Static) {

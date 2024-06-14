@@ -13,5 +13,6 @@ public:
 private:
 	const float moveSpeed = 2;
 	const float jumpPower = -0.6;
+	bool canJump = false;
 	Rigidbody* rb;
 };
