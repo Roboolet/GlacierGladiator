@@ -3,8 +3,6 @@
 #include "Component.h"
 
 void GameObject::Awaken() {
-	name = "";
-
 	for (int i = 0; i < components.size(); i++) {
 		components[i]->OnAwaken();
 	}

@@ -1,6 +1,7 @@
 #include "InputSystem.h"
 #include <iostream>
 #include "Components.h"
+#include "Scene.h"
 
 void Player::OnAwaken()
 {
@@ -11,7 +12,17 @@ void Player::OnAwaken()
 
 void Player::OnUpdate(double _deltaTime)
 {
-	if (rb->collidedLastFrame) canJump = true;
+	if (rb->collidedLastFrame) {
+		canJump = true;
+
+		// if above a certain height, gain score (because you break meteors)
+		if (gameObject->position.y < 30) {
+			TextRenderer* t = dynamic_cast<TextRenderer*>(gameObject->scene->Find("score")
+				->GetComponent(typeid(TextRenderer).name()));
+			score += 100;
+			t->text = "Score: " + std::to_string(score);
+		}
+	}
 
 	// input checks
 	if (InputSystem::GetInstance().GetButton("Left")) {
