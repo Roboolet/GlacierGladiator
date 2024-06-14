@@ -12,5 +12,6 @@ private:
 	double delay;
 	double lastSpawnTime;
 	int meteorsLeft;
+	bool hasWon;
 	void SpawnMeteor();
 };

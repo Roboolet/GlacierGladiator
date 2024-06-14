@@ -20,8 +20,10 @@ void MeteorSpawner::OnUpdate(double _deltaTime)
 			lastSpawnTime = gameObject->scene->timeSinceStart;
 		}
 	}
-	else {
-		// you win!!!
+	else if(!hasWon && lastSpawnTime + 3000000000 < gameObject->scene->timeSinceStart) {
+		hasWon = true;
+		gameObject->scene->Instantiate("winText", LeaVec2(-72, -40), LeaVec2(15, 15), compVec{
+		new TextRenderer("You win!! Great job", 12) });
 	}
 }
 
