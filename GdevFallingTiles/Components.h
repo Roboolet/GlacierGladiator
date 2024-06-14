@@ -5,3 +5,4 @@
 #include "Rigidbody.h"
 #include "BoxCollider.h"
 #include "TextRenderer.h"
+#include "Meteor.h"

@@ -10,6 +10,7 @@ void Scene::CreateGameScene1()
 {
 	// this too should ideally be done in some format like json or xml, but it'll do the job
 	typedef std::vector<Component*> compVec;
+	objects.clear();
 
 	// background
 	Instantiate(LeaVec2(-96, -54), LeaVec2(192, 108), compVec{ 
@@ -34,7 +35,8 @@ void Scene::CreateGameScene1()
 	Instantiate(LeaVec2(40, -90), LeaVec2(15, 15), compVec{
 		new BoxRenderer(100, 60, sf::Color(255,100,100,255), sf::BlendAdd),
 		new Rigidbody(BodyType::Kinematic),
-		new BoxCollider() });
+		new BoxCollider(),
+		new Meteor()});
 
 	// score display
 	Instantiate(LeaVec2(-92, 42), LeaVec2(15, 15), compVec{

@@ -10,7 +10,7 @@ int main()
     //sf::RenderWindow window(sf::VideoMode(192, 108), "Glacier Gladiator", sf::Style::Fullscreen);
 
     window.setVerticalSyncEnabled(true);
-    srand(129835);
+    srand(time(nullptr));
 
     // create the input mappings
     // ideally i'd do this in a json file or something but that's too complicated for now
