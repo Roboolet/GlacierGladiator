@@ -81,10 +81,11 @@ void Scene::PhysicsUpdate()
 					// just assume it came from above, since this only matters for
 					// the player and floor anyways
 					if (rbA->bodyType == BodyType::Dynamic) {
-						rbA->velocity = LeaVec2(rbA->velocity.x, std::min((float)0, rbA->velocity.y));
+						rbA->velocity = LeaVec2(rbA->velocity.x, std::min((float)-0.01f, rbA->velocity.y));
+
 					}
 					if (rbB->bodyType == BodyType::Dynamic) {
-						rbB->velocity = LeaVec2(rbB->velocity.x, std::min((float)0, rbA->velocity.y));
+						rbB->velocity = LeaVec2(rbB->velocity.x, std::min((float)-0.01f, rbA->velocity.y));
 					}
 				}
 				else {
