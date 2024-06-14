@@ -142,6 +142,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="LeaVec2.cpp" />
     <ClCompile Include="Meteor.cpp" />
+    <ClCompile Include="MeteorSpawner.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Rigidbody.cpp" />
     <ClCompile Include="Scene.cpp" />
@@ -158,6 +159,7 @@
     <ClInclude Include="LeaMatrix3x2.h" />
     <ClInclude Include="LeaVec2.h" />
     <ClInclude Include="Meteor.h" />
+    <ClInclude Include="MeteorSpawner.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Rigidbody.h" />

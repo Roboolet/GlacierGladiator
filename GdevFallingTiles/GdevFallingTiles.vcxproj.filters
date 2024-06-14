@@ -54,6 +54,9 @@
     <ClCompile Include="Meteor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="MeteorSpawner.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="LeaVec2.h">
@@ -99,6 +102,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Meteor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MeteorSpawner.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

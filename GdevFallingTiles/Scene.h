@@ -1,9 +1,8 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include "GameObject.h"
 #include "LeaMath.h"
+#include "GameObject.h"
 #include <chrono>
-
 
 class Scene {
 public:

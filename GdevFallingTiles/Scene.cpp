@@ -1,6 +1,8 @@
 #include <iostream>
 #include "Components.h"
+#include "GameObject.h"
 #include "Scene.h"
+
 #include <chrono>
 
 Scene::Scene() {
@@ -31,12 +33,7 @@ void Scene::CreateGameScene1()
 		new Rigidbody(BodyType::Dynamic),
 		new BoxCollider() });
 
-	// meteor
-	Instantiate(LeaVec2(40, -90), LeaVec2(15, 15), compVec{
-		new BoxRenderer(100, 60, sf::Color(255,100,100,255), sf::BlendAdd),
-		new Rigidbody(BodyType::Kinematic),
-		new BoxCollider(),
-		new Meteor()});
+	// meteor spawner
 
 	// score display
 	Instantiate(LeaVec2(-92, 42), LeaVec2(15, 15), compVec{
@@ -139,6 +136,7 @@ void Scene::Awake()
 GameObject* Scene::Instantiate(LeaVec2 _pos, LeaVec2 _sc, std::vector<Component*> _comps)
 {
 	GameObject obj = GameObject(_pos, _sc, _comps);
+	obj.scene = this;
 	objects.insert(objects.end(), obj);
 	return nullptr;
 }

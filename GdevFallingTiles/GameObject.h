@@ -1,8 +1,9 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "LeaMath.h"
-#include <typeinfo>
 #include "Components.h"
+
+class Scene;
 
 class GameObject {
 public:
@@ -14,18 +15,16 @@ public:
 		std::vector<Component*> _components);
 	virtual ~GameObject();
 
-	// fields
 	std::string name;
 	LeaVec2 position, scale;
 	//float rotation;
 	std::vector<Component*> components;
-
-	// generally useful methods
-	//LeaMatrix3x2 GetPRS();
+	Scene* scene;
 
 	void Awaken();
 	void Update(double _deltaTime);
 	void Draw(sf::RenderWindow& _window, LeaVec2 _screenPosition);
+	//LeaMatrix3x2 GetPRS();
 
 	// i wish i knew how generic types worked in this language
 	Component* GetComponent(std::string);
