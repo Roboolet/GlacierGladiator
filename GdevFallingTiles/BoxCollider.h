@@ -6,5 +6,6 @@
 class BoxCollider : public Component {
 public:
 	virtual void OnUpdate(double _deltaTime) override;
-	LeaVec2 topL, botL, topR, botR;
+	LeaVec2 topL, botR;
+	float width, height;
 };

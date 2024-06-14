@@ -15,7 +15,7 @@ void Scene::CreateGameScene1()
 	Instantiate(LeaVec2(0, 0), LeaVec2(192, 108), compVec{ 
 		new BoxRenderer(150, 60, sf::Color(73,35,29,255), sf::BlendAdd) });
 	// floor
-	Instantiate(LeaVec2(0, 50), LeaVec2(192, 20), compVec{ 
+	Instantiate(LeaVec2(-100, 40), LeaVec2(200, 15), compVec{ 
 		new BoxRenderer(800, 60, sf::Color(36,150,197,125), sf::BlendAdd),
 		new Rigidbody(),
 		new BoxCollider() });
@@ -62,12 +62,17 @@ void Scene::PhysicsUpdate()
 
 				// check for interesctions
 				// using the logic from https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection
-				if (boxA->topL.x < boxB->topL.x + boxB->botR.x &&
-					boxA->topL.x + boxA->botR.x > boxB->topL.x &&
-					boxA->topL.y < boxB->topL.y + boxB->botR.y &&
-					boxA->topL.y + boxA->botR.y > boxB->topL.y) {
+				if (boxA->topL.x < boxB->topL.x + boxB->width &&
+					boxA->topL.x + boxA->width > boxB->topL.x &&
+					boxA->topL.y < boxB->topL.y + boxB->height &&
+					boxA->topL.y + boxA->height > boxB->topL.y) {
 					// collision detected
-					std::cout << "Collision!!" << std::endl;
+					std::cout <<
+						" AtopL: " << boxA->topL.x << ", " << boxA->topL.y <<
+						"; BtopL: " << boxB->topL.x << ", " << boxB->topL.y << std::endl <<
+						" AbotR: " << boxA->botR.x << ", " << boxA->botR.y <<
+						"; BbotR: " << boxB->botR.x << ", " << boxB->botR.y <<
+						std::endl;
 				}
 				else {
 					// no collision

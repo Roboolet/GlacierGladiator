@@ -44,8 +44,7 @@ void BoxRenderer::OnDraw(sf::RenderWindow& _window, LeaVec2 _screenPosition)
 		sf::Sprite sprite;
 		sprite.setTexture(tex);
 
-		// set position, screen position 0 should have it centered
-		sprite.setPosition(_screenPosition.x - sizeX / 2, _screenPosition.y - sizeY / 2);
+		sprite.setPosition(_screenPosition.x, _screenPosition.y);
 
 		_window.draw(sprite, blendMode);
 		canFill = false;
