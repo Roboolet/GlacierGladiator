@@ -34,6 +34,8 @@ void Scene::CreateGameScene1()
 		new BoxCollider() });
 
 	// meteor spawner
+	Instantiate("meteorSpawner", LeaVec2(0, -60), LeaVec2(160, 2), compVec{
+		new MeteorSpawner(40, 8)});
 
 	// score display
 	Instantiate("score", LeaVec2(-92, 42), LeaVec2(15, 15), compVec{
@@ -106,7 +108,8 @@ void Scene::PhysicsUpdate()
 }
 
 void Scene::Update() {
-	// periodically create asteroids
+
+	srand(timeSinceStart + deltaTime);
 
 	// calculate deltatime and time since start
 	auto now = std::chrono::steady_clock::now();
