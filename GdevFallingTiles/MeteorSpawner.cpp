@@ -13,17 +13,20 @@ void MeteorSpawner::OnAwaken()
 
 void MeteorSpawner::OnUpdate(double _deltaTime)
 {
-	if (meteorsLeft > 0) {
-		if (lastSpawnTime + delay < gameObject->scene->timeSinceStart) {
-			SpawnMeteor();
-			meteorsLeft--;
-			lastSpawnTime = gameObject->scene->timeSinceStart;
+	if (gameObject->scene->gamestate == Gamestate::Playing) {
+		if (meteorsLeft > 0) {
+			if (lastSpawnTime + delay < gameObject->scene->timeSinceStart) {
+				SpawnMeteor();
+				meteorsLeft--;
+				lastSpawnTime = gameObject->scene->timeSinceStart;
+			}
 		}
-	}
-	else if(!hasWon && lastSpawnTime + 3000000000 < gameObject->scene->timeSinceStart) {
-		hasWon = true;
-		gameObject->scene->Instantiate("winText", LeaVec2(-72, -40), LeaVec2(15, 15), compVec{
-		new TextRenderer("You win!! Great job", 12) });
+		else if (lastSpawnTime + 3000000000 < gameObject->scene->timeSinceStart) {
+
+			gameObject->scene->gamestate = Gamestate::Won;
+			gameObject->scene->Instantiate("winText", LeaVec2(-72, -40), LeaVec2(15, 15), compVec{
+			new TextRenderer("You win!! Great job", 12) });
+		}
 	}
 }
 

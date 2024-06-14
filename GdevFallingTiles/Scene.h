@@ -4,6 +4,8 @@
 #include "GameObject.h"
 #include <chrono>
 
+enum Gamestate{Playing, Won, Lost};
+
 class Scene {
 public:
 	Scene();
@@ -13,6 +15,7 @@ public:
 	double deltaTime;
 
 	void CreateGameScene1();
+	Gamestate gamestate;
 
 	// objects
 	std::vector<GameObject*> objects;
