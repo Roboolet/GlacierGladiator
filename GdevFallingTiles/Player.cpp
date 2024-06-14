@@ -13,6 +13,7 @@ void Player::OnUpdate(double _deltaTime)
 {
 	if (rb->collidedLastFrame) canJump = true;
 
+	// input checks
 	if (InputSystem::GetInstance().GetButton("Left")) {
 		rb->AddForce(LeaVec2(-moveSpeed * _deltaTime, 0));
 	}
@@ -22,6 +23,14 @@ void Player::OnUpdate(double _deltaTime)
 	if (InputSystem::GetInstance().GetButton("Up") && canJump) {
 		rb->velocity = LeaVec2(rb->velocity.x, jumpPower);
 		canJump = false;
+	}
+
+	// looping
+	if(gameObject->position.x < -102){
+		gameObject->position = LeaVec2(101, gameObject->position.y);
+	}
+	else if (gameObject->position.x > 102) {
+		gameObject->position = LeaVec2(-101, gameObject->position.y);
 	}
 	
 }
