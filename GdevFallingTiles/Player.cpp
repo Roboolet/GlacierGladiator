@@ -51,7 +51,7 @@ void Player::OnUpdate(double _deltaTime)
 	if (InputSystem::GetInstance().GetButton("Right")) {		
 		rb->AddForce(LeaVec2(moveSpeed * _deltaTime, 0));
 	}
-	if (InputSystem::GetInstance().GetButton("Up") && canJump) {
+	if (InputSystem::GetInstance().GetButtonDown("Up") && canJump) {
 		rb->velocity = LeaVec2(rb->velocity.x, jumpPower);
 		canJump = false;
 	}
