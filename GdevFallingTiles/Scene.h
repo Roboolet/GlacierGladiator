@@ -15,11 +15,12 @@ public:
 	void CreateGameScene1();
 
 	// objects
-	std::vector<GameObject> objects;
+	std::vector<GameObject*> objects;
 	void PhysicsUpdate();
 	void Update();
 	void Awake();
 	GameObject* Instantiate(std::string, LeaVec2, LeaVec2, std::vector<Component*>);
+	GameObject* Find(std::string _name);
 
 	// camera and rendering
 	LeaVec2 cameraPosition;

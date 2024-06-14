@@ -51,7 +51,7 @@ void Scene::PhysicsUpdate()
 	for (int i = 0; i < objects.size(); i++) {
 		// this convolluted getcomponent is the only way i could 
 		// make it work with my current knowledge
-		Rigidbody* rb = dynamic_cast<Rigidbody*>(objects[i].GetComponent(typeid(Rigidbody).name()));
+		Rigidbody* rb = dynamic_cast<Rigidbody*>(objects[i]->GetComponent(typeid(Rigidbody).name()));
 
 		if (rb != nullptr) {
 			rbs.insert(rbs.end(), rb);
@@ -118,7 +118,7 @@ void Scene::Update() {
 
 	// update objects
 	for (int i = 0; i < objects.size(); i++) {
-		objects[i].Update(deltaTime);
+		objects[i]->Update(deltaTime);
 	}
 }
 
@@ -129,17 +129,28 @@ void Scene::Awake()
 
 	// awaken the objects
 	for (int i = 0; i < objects.size(); i++) {
-		objects[i].Awaken();
+		objects[i]->Awaken();
 	}
 }
 
 GameObject* Scene::Instantiate(std::string _n, LeaVec2 _pos,
 	LeaVec2 _sc, std::vector<Component*> _comps)
 {
-	GameObject obj = GameObject(_pos, _sc, _comps);
-	obj.scene = this;
-	obj.name = _n;
+	GameObject* obj = new GameObject(_pos, _sc, _comps);
+	obj->scene = this;
+	obj->name = _n;
 	objects.insert(objects.end(), obj);
+	return obj;
+}
+
+GameObject* Scene::Find(std::string _name)
+{
+	for (int i = 0; i < objects.size(); i++) {
+		GameObject* obj = objects[i];
+		if (objects[i]->name == _name) {
+			return objects[i];
+		}
+	}
 	return nullptr;
 }
 
@@ -161,8 +172,8 @@ void Scene::Render(sf::RenderWindow& _window, int resolutionX, int resolutionY) 
 	for (int i = 0; i < size; i++) {
 		int screenW = resolutionX / 2;
 		int screenH = resolutionY / 2;
-		LeaVec2 screenPos = LeaVec2(screenW + objects[i].position.x, screenH + objects[i].position.y);
-		objects[i].Draw(_window, screenPos);
+		LeaVec2 screenPos = LeaVec2(screenW + objects[i]->position.x, screenH + objects[i]->position.y);
+		objects[i]->Draw(_window, screenPos);
 	}
 
 }
