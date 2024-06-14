@@ -3,8 +3,10 @@
 #include "Component.h"
 
 void GameObject::Awaken() {
-	for (int i = 0; i < components.size(); i++) {
-		components[i]->OnAwaken();
+	if (enabled) {
+		for (int i = 0; i < components.size(); i++) {
+			components[i]->OnAwaken();
+		}
 	}
 }
 
@@ -14,14 +16,18 @@ void GameObject::Awaken() {
 }*/
 
 void GameObject::Update(double _deltaTime) {
-	for (int i = 0; i < components.size(); i++) {
-		components[i]->OnUpdate(_deltaTime);
+	if (enabled) {
+		for (int i = 0; i < components.size(); i++) {
+			components[i]->OnUpdate(_deltaTime);
+		}
 	}
 }
 
 void GameObject::Draw(sf::RenderWindow& _window, LeaVec2 _screenPosition) {
-	for (int i = 0; i < components.size(); i++) {
-		components[i]->OnDraw(_window, _screenPosition);
+	if (enabled) {
+		for (int i = 0; i < components.size(); i++) {
+			components[i]->OnDraw(_window, _screenPosition);
+		}
 	}
 }
 

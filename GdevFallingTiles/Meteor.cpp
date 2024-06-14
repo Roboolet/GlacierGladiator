@@ -17,11 +17,12 @@ void Meteor::OnUpdate(double _deltaTime)
 		// just doing a height check
 		if (gameObject->position.y < 30) {
 			// hit player, destroy self
+			gameObject->enabled = false;
 		}
 		else {
 			// hit ground... you lose !!
 			if (gameObject->scene->gamestate == Gamestate::Playing) {
-
+				gameObject->enabled = false;
 				gameObject->scene->gamestate = Gamestate::Lost;
 				gameObject->scene->Instantiate("loseText", LeaVec2(-60, -40), LeaVec2(15, 15), compVec{
 				new TextRenderer("Oh no! You lost!", 12) });

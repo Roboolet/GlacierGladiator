@@ -23,7 +23,7 @@ void Scene::CreateGameScene1()
 		new BoxRenderer(800, 60, sf::Color(36,150,197,125), sf::BlendAdd),
 		new Rigidbody(BodyType::Static),
 		new BoxCollider() });
-	Instantiate("floorTop", LeaVec2(-100, 40), LeaVec2(200, 2), compVec{
+	Instantiate("floorTop", LeaVec2(-150, 40), LeaVec2(300, 2), compVec{
 		new BoxRenderer(400, 60, sf::Color(36,150,197,125), sf::BlendAdd) });
 
 	// player
@@ -53,11 +53,13 @@ void Scene::PhysicsUpdate()
 	for (int i = 0; i < objects.size(); i++) {
 		// this convolluted getcomponent is the only way i could 
 		// make it work with my current knowledge
-		Rigidbody* rb = dynamic_cast<Rigidbody*>(objects[i]->GetComponent(typeid(Rigidbody).name()));
+		if (objects[i]->enabled) {
+			Rigidbody* rb = dynamic_cast<Rigidbody*>(objects[i]->GetComponent(typeid(Rigidbody).name()));
 
-		if (rb != nullptr) {
-			rbs.insert(rbs.end(), rb);
-			rb->collidedLastFrame = false;
+			if (rb != nullptr) {
+				rbs.insert(rbs.end(), rb);
+				rb->collidedLastFrame = false;
+			}
 		}
 	}
 

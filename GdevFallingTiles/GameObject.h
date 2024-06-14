@@ -15,6 +15,7 @@ public:
 		std::vector<Component*> _components);
 	virtual ~GameObject();
 
+	bool enabled = true;
 	std::string name;
 	LeaVec2 position, scale;
 	//float rotation;
