@@ -18,7 +18,7 @@ void MeteorSpawner::OnUpdate(double _deltaTime)
 
 void MeteorSpawner::SpawnMeteor()
 {
-	gameObject->scene->Instantiate(LeaVec2(40, -90), LeaVec2(15, 15), compVec{
+	gameObject->scene->Instantiate("meteor", LeaVec2(40, -90), LeaVec2(15, 15), compVec{
 		new BoxRenderer(100, 60, sf::Color(255,100,100,255), sf::BlendAdd),
 		new Rigidbody(BodyType::Kinematic),
 		new BoxCollider(),

@@ -15,19 +15,19 @@ void Scene::CreateGameScene1()
 	objects.clear();
 
 	// background
-	Instantiate(LeaVec2(-96, -54), LeaVec2(192, 108), compVec{ 
+	Instantiate("bg", LeaVec2(-96, -54), LeaVec2(192, 108), compVec{
 		new BoxRenderer(150, 60, sf::Color(73,35,29,255), sf::BlendAdd) });
 
 	// floor
-	Instantiate(LeaVec2(-100, 40), LeaVec2(200, 15), compVec{ 
+	Instantiate("floor", LeaVec2(-100, 40), LeaVec2(200, 15), compVec{
 		new BoxRenderer(800, 60, sf::Color(36,150,197,125), sf::BlendAdd),
 		new Rigidbody(BodyType::Static),
 		new BoxCollider() });
-	Instantiate(LeaVec2(-100, 40), LeaVec2(200, 2), compVec{
+	Instantiate("floorTop", LeaVec2(-100, 40), LeaVec2(200, 2), compVec{
 		new BoxRenderer(400, 60, sf::Color(36,150,197,125), sf::BlendAdd) });
 
 	// player
-	Instantiate(LeaVec2(0, -20), LeaVec2(10, 10), compVec{
+	Instantiate("player", LeaVec2(0, -20), LeaVec2(10, 10), compVec{
 		new BoxRenderer(100, 60, sf::Color(110,150,170,255), sf::BlendAdd),
 		new Player(),
 		new Rigidbody(BodyType::Dynamic),
@@ -36,7 +36,7 @@ void Scene::CreateGameScene1()
 	// meteor spawner
 
 	// score display
-	Instantiate(LeaVec2(-92, 42), LeaVec2(15, 15), compVec{
+	Instantiate("score", LeaVec2(-92, 42), LeaVec2(15, 15), compVec{
 		new TextRenderer("Score: 0", 8)});
 
 	std::cout << "Objects instantiated: " << objects.size() << std::endl;
@@ -133,10 +133,12 @@ void Scene::Awake()
 	}
 }
 
-GameObject* Scene::Instantiate(LeaVec2 _pos, LeaVec2 _sc, std::vector<Component*> _comps)
+GameObject* Scene::Instantiate(std::string _n, LeaVec2 _pos,
+	LeaVec2 _sc, std::vector<Component*> _comps)
 {
 	GameObject obj = GameObject(_pos, _sc, _comps);
 	obj.scene = this;
+	obj.name = _n;
 	objects.insert(objects.end(), obj);
 	return nullptr;
 }

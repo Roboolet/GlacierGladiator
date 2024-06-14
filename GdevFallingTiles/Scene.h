@@ -19,7 +19,7 @@ public:
 	void PhysicsUpdate();
 	void Update();
 	void Awake();
-	GameObject* Instantiate(LeaVec2, LeaVec2, std::vector<Component*>);
+	GameObject* Instantiate(std::string, LeaVec2, LeaVec2, std::vector<Component*>);
 
 	// camera and rendering
 	LeaVec2 cameraPosition;

@@ -3,7 +3,7 @@
 #include "Component.h"
 
 void GameObject::Awaken() {
-	name = "unnamed";
+	name = "";
 
 	for (int i = 0; i < components.size(); i++) {
 		components[i]->OnAwaken();
@@ -56,6 +56,8 @@ GameObject::GameObject(const GameObject& old)
 	position = old.position;
 	scale = old.scale;
 	components = old.components;
+	name = old.name;
+	scene = old.scene;
 	InitializeComponents();
 
 	std::cout << "Scene: Copied GameObject " << &old << " into new object " << this << std::endl;
