@@ -9,6 +9,6 @@ public:
 	virtual void OnUpdate(double _deltaTime) override;
 
 private:
-	const float drift = 10;
+	const float drift = 1;
 	Rigidbody* rb;
 };

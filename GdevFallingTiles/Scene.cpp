@@ -34,8 +34,8 @@ void Scene::CreateGameScene1()
 		new BoxCollider() });
 
 	// meteor spawner
-	Instantiate("meteorSpawner", LeaVec2(0, -60), LeaVec2(160, 2), compVec{
-		new MeteorSpawner(40, 8)});
+	Instantiate("meteorSpawner", LeaVec2(0, -75), LeaVec2(130, 2), compVec{
+		new MeteorSpawner(5, 1500000000)});
 
 	// score display
 	Instantiate("score", LeaVec2(-92, 42), LeaVec2(15, 15), compVec{
@@ -117,6 +117,7 @@ void Scene::Update() {
 	lastFrameTime = now;
 	deltaTime =  std::fmin(elapsed.count(), 1);
 
+	// i think this is in nanoseconds, and i cant seem to fix it
 	timeSinceStart = (now - creationTime).count();
 
 	// update objects
@@ -129,11 +130,6 @@ void Scene::Awake()
 {
 	// this is in seconds
 	creationTime = std::chrono::steady_clock::now();
-
-	// awaken the objects
-	for (int i = 0; i < objects.size(); i++) {
-		objects[i]->Awaken();
-	}
 }
 
 GameObject* Scene::Instantiate(std::string _n, LeaVec2 _pos,
@@ -143,6 +139,8 @@ GameObject* Scene::Instantiate(std::string _n, LeaVec2 _pos,
 	obj->scene = this;
 	obj->name = _n;
 	objects.insert(objects.end(), obj);
+
+	obj->Awaken();
 	return obj;
 }
 

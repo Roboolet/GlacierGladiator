@@ -3,7 +3,7 @@
 
 typedef std::vector<Component*> compVec;
 
-MeteorSpawner::MeteorSpawner(int _amount, double _startingDelay)
+MeteorSpawner::MeteorSpawner(int _amount, double _startingDelay) : delay(_startingDelay), meteorsLeft(_amount)
 {
 }
 
@@ -13,7 +13,16 @@ void MeteorSpawner::OnAwaken()
 
 void MeteorSpawner::OnUpdate(double _deltaTime)
 {
-	SpawnMeteor();
+	if (meteorsLeft > 0) {
+		if (lastSpawnTime + delay < gameObject->scene->timeSinceStart) {
+			SpawnMeteor();
+			meteorsLeft--;
+			lastSpawnTime = gameObject->scene->timeSinceStart;
+		}
+	}
+	else {
+		// you win!!!
+	}
 }
 
 void MeteorSpawner::SpawnMeteor()

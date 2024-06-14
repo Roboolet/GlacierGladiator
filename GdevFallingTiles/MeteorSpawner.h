@@ -9,5 +9,8 @@ public:
 	virtual void OnUpdate(double _deltaTime) override;
 
 private:
+	double delay;
+	double lastSpawnTime;
+	int meteorsLeft;
 	void SpawnMeteor();
 };
