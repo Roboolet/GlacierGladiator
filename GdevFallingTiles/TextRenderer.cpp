@@ -7,10 +7,13 @@ TextRenderer::TextRenderer(std::string _text, int _size) : text(_text), fontSize
 
 void TextRenderer::OnAwaken()
 {
-	std::string path = "assets/Retro Gaming.ttf";
+	// idk how to include my own fonts in builds so i give up and just use arial
+	//std::string path = "C:/Windows/Fonts/Retro Gaming Regular.ttf";
+	std::string path = "C:\\Windows\\Fonts\\Arial.ttf";
 	if (!font.loadFromFile(path))
 	{
 		std::cout << "Couldn't load font " << path << std::endl;
+		
 	}
 	else {
 		std::cout << "Successfully loaded font " << path << std::endl;
