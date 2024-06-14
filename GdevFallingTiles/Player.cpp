@@ -14,7 +14,7 @@ void Player::OnUpdate(double _deltaTime)
 {
 	if (rb->collidedLastFrame) {		
 		// if above a certain height, gain score (because you break meteors)
-		if (gameObject->position.y < 30) {
+		if (gameObject->position.y < 30 && gameObject->scene->gamestate == Gamestate::Playing) {
 			TextRenderer* t = dynamic_cast<TextRenderer*>(gameObject->scene->Find("score")
 				->GetComponent(typeid(TextRenderer).name()));
 			score += 100;

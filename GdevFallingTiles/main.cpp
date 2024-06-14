@@ -6,7 +6,7 @@
 int main()
 {    
     const int resX = 192, resY = 108;
-    sf::RenderWindow window(sf::VideoMode(resX, resY), "Glacier Gladiator", sf::Style::None);
+    sf::RenderWindow window(sf::VideoMode(resX, resY), "Glacier Gladiator", sf::Style::Default);
     window.setSize(sf::Vector2u(1600,900));
     window.setPosition(sf::Vector2i(100,100));
 
