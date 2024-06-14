@@ -35,7 +35,7 @@ void Scene::CreateGameScene1()
 
 	// meteor spawner
 	Instantiate("meteorSpawner", LeaVec2(0, -75), LeaVec2(130, 2), compVec{
-		new MeteorSpawner(5, 1500000000)});
+		new MeteorSpawner(30, 1400000000)});
 
 	// score display
 	Instantiate("score", LeaVec2(-92, 42), LeaVec2(15, 15), compVec{

@@ -12,15 +12,20 @@ void Player::OnAwaken()
 
 void Player::OnUpdate(double _deltaTime)
 {
-	if (rb->collidedLastFrame) {
-		canJump = true;
-
+	if (rb->collidedLastFrame) {		
 		// if above a certain height, gain score (because you break meteors)
 		if (gameObject->position.y < 30) {
 			TextRenderer* t = dynamic_cast<TextRenderer*>(gameObject->scene->Find("score")
 				->GetComponent(typeid(TextRenderer).name()));
 			score += 100;
 			t->text = "Score: " + std::to_string(score);
+
+			// also launch yourself!
+			rb->velocity = LeaVec2(rb->velocity.x, jumpPower);
+		}
+		// landing on ground
+		else {
+			canJump = true;
 		}
 	}
 

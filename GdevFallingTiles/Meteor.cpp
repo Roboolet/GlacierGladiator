@@ -15,7 +15,7 @@ void Meteor::OnUpdate(double _deltaTime)
 {
 	if (rb->collidedLastFrame) {
 		// just doing a height check
-		if (gameObject->position.y < 30) {
+		if (gameObject->position.y < 20) {
 			// hit player, destroy self
 			gameObject->enabled = false;
 		}
