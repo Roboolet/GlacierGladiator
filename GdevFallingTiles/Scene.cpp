@@ -23,7 +23,7 @@ void Scene::CreateGameScene1()
 		new BoxRenderer(800, 60, sf::Color(36,150,197,125), sf::BlendAdd),
 		new Rigidbody(BodyType::Static),
 		new BoxCollider() });
-	Instantiate("floorTop", LeaVec2(-150, 40), LeaVec2(300, 2), compVec{
+	Instantiate("floorTop", LeaVec2(-100, 40), LeaVec2(200, 2), compVec{
 		new BoxRenderer(400, 60, sf::Color(36,150,197,125), sf::BlendAdd) });
 
 	// player
@@ -34,7 +34,7 @@ void Scene::CreateGameScene1()
 		new BoxCollider() });
 
 	// meteor spawner
-	Instantiate("meteorSpawner", LeaVec2(0, -75), LeaVec2(130, 2), compVec{
+	Instantiate("meteorSpawner", LeaVec2(0, -75), LeaVec2(90, 2), compVec{
 		new MeteorSpawner(30, 1400000000)});
 
 	// score display

@@ -10,5 +10,6 @@ public:
 
 private:
 	const float drift = 1;
+	float randrift;
 	Rigidbody* rb;
 };
