@@ -1,5 +1,7 @@
 #pragma once
 
+// i ended up not using this since it made
+// everything unecessarily complicated
 class LeaMatrix3x2 {
 public:
 	LeaVec2 rowI;

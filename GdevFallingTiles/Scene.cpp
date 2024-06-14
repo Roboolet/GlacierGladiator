@@ -8,6 +8,7 @@ Scene::Scene() {
 
 void Scene::CreateGameScene1()
 {
+	// this too should ideally be done in some format like json or xml, but it'll do the job
 	typedef std::vector<Component*> compVec;
 
 	// background
@@ -15,20 +16,72 @@ void Scene::CreateGameScene1()
 		new BoxRenderer(150, 60, sf::Color(73,35,29,255), sf::BlendAdd) });
 	// floor
 	Instantiate(LeaVec2(0, 50), LeaVec2(192, 20), compVec{ 
-		new BoxRenderer(800, 60, sf::Color(16,150,197,75), sf::BlendAdd) });
+		new BoxRenderer(800, 60, sf::Color(36,150,197,125), sf::BlendAdd),
+		new Rigidbody(),
+		new BoxCollider() });
 	// player
 	Instantiate(LeaVec2(0, -20), LeaVec2(10, 10), compVec{
 		new BoxRenderer(100, 60, sf::Color(110,150,170,255), sf::BlendAdd),
 		new Player(),
-		new Rigidbody() });
+		new Rigidbody(),
+		new BoxCollider() });
 
 	std::cout << "Objects instantiated: " << objects.size() << std::endl;
 }
 
 
+void Scene::PhysicsUpdate()
+{
+	std::vector<Rigidbody*> rbs;
+
+	// gather all the rigidbodies
+	for (int i = 0; i < objects.size(); i++) {
+		// this convolluted getcomponent is the only way i could 
+		// make it work with my current knowledge
+		Rigidbody* rb = dynamic_cast<Rigidbody*>(objects[i].GetComponent(typeid(Rigidbody).name()));
+
+		if (rb != nullptr) {
+			rbs.insert(rbs.end(), rb);
+		}
+	}
+
+	// add restorative forces and adjust positions
+	// every rigidbody against every other rigidbody
+	for (int i = 0; i < rbs.size(); i++) {
+		Rigidbody* rbA = rbs[i];
+
+		for (int i = 0; i < rbs.size(); i++) {
+			Rigidbody* rbB = rbs[i];
+			if (rbA != rbB) {
+
+				// what a mess
+				BoxCollider* boxA = dynamic_cast<BoxCollider*>
+					(rbA->gameObject->GetComponent(typeid(BoxCollider).name()));
+				BoxCollider* boxB = dynamic_cast<BoxCollider*>
+					(rbB->gameObject->GetComponent(typeid(BoxCollider).name()));
+
+				// check for interesctions
+				// using the logic from https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection
+				if (boxA->topL.x < boxB->topL.x + boxB->botR.x &&
+					boxA->topL.x + boxA->botR.x > boxB->topL.x &&
+					boxA->topL.y < boxB->topL.y + boxB->botR.y &&
+					boxA->topL.y + boxA->botR.y > boxB->topL.y) {
+					// collision detected
+					std::cout << "Collision!!" << std::endl;
+				}
+				else {
+					// no collision
+
+				}
+			}
+		}
+	}
+}
+
 void Scene::Update() {
 	// periodically create asteroids
 
+	// calculate deltatime and time since start
 	auto now = std::chrono::steady_clock::now();
 	std::chrono::duration<double> elapsed = now - lastFrameTime;
 	lastFrameTime = now;
@@ -37,8 +90,7 @@ void Scene::Update() {
 	timeSinceStart = (now - creationTime).count();
 
 	// update objects
-	auto size = objects.size();
-	for (int i = 0; i < size; i++) {
+	for (int i = 0; i < objects.size(); i++) {
 		objects[i].Update(deltaTime);
 	}
 }
@@ -49,8 +101,7 @@ void Scene::Awake()
 	creationTime = std::chrono::steady_clock::now();
 
 	// awaken the objects
-	auto size = objects.size();
-	for (int i = 0; i < size; i++) {
+	for (int i = 0; i < objects.size(); i++) {
 		objects[i].Awaken();
 	}
 }
@@ -64,9 +115,9 @@ GameObject* Scene::Instantiate(LeaVec2 _pos, LeaVec2 _sc, std::vector<Component*
 
 void Scene::Render(sf::RenderWindow& _window, int resolutionX, int resolutionY) {
 
-	// clears the screen every n nanoseconds
-	// i wanted to make this game without clears but sadly this
-	// framework is really not made for this
+	// clears the screen every n nanoseconds (i think?)
+	// i wanted to make this game without window clears but sadly this
+	// rendering library is really not made for that
 	double m = std::fmod(timeSinceStart, 50000000);
 	if (m < lastFrameScreenClearMod) {
 		_window.clear();
@@ -78,8 +129,6 @@ void Scene::Render(sf::RenderWindow& _window, int resolutionX, int resolutionY) 
 	// draw objects
 	auto size = objects.size();
 	for (int i = 0; i < size; i++) {
-		//float screenW = resolutionX / 2;
-		//float screenH = resolutionY / 2;
 		int screenW = resolutionX / 2;
 		int screenH = resolutionY / 2;
 		LeaVec2 screenPos = LeaVec2(screenW + objects[i].position.x, screenH + objects[i].position.y);

@@ -27,9 +27,7 @@ int main()
     };
     auto len = std::size(inputMappings);
     InputSystem::GetInstance().Initialize(inputMappings, len);
-
-    // create objects
-    // this too should ideally be done in some format like json or xml
+    
     Scene* scene = new Scene();
     scene->CreateGameScene1();
     scene->Awake();
@@ -47,10 +45,10 @@ int main()
             InputSystem::GetInstance().ProcessEvent(event);
         }
 
-        scene->Update();     
+        scene->Update();   
+        scene->PhysicsUpdate();
 
-        // the combination of renderers using BlendAdd and not calling the window clear makes
-        // a cool smearing effect
+        // the lack of window.clear() here is intentional, see Scene.cpp
         scene->Render(window, resX, resY);
         window.display();
     }

@@ -11,6 +11,7 @@ public:
 	virtual ~Player();
 
 private:
-	const float moveSpeed = 4;
+	const float moveSpeed = 2;
+	const float jumpPower = -0.6;
 	Rigidbody* rb;
 };

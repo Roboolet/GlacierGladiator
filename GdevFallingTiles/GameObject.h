@@ -23,8 +23,6 @@ public:
 	// generally useful methods
 	//LeaMatrix3x2 GetPRS();
 
-	// do not override these, override the
-	// protected ones instead
 	void Awaken();
 	void Update(double _deltaTime);
 	void Draw(sf::RenderWindow& _window, LeaVec2 _screenPosition);

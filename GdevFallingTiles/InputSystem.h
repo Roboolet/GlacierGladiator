@@ -20,7 +20,7 @@ public:
 		static InputSystem instance;
 		return instance;
 	}
-	// delete keyword makes these default methods inaccessible
+	// delete keyword makes these methods inaccessible
 	InputSystem(InputSystem const&) = delete;
 	void operator=(InputSystem const&) = delete;
 
@@ -38,7 +38,6 @@ public:
 	bool GetButtonUp(std::string _key);
 
 private:
-	// this seems to be the same as doing InputSystem() {}
 	InputSystem() {};
 
 };

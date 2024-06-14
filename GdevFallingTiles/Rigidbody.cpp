@@ -4,10 +4,12 @@
 
 void Rigidbody::OnUpdate(double _deltaTime)
 {
-	velocity = velocity + LeaVec2(0, gravity * _deltaTime);
+	if (bodyType != BodyType::Static) {
+		velocity = velocity + LeaVec2(0, gravity * _deltaTime);
 
-	LeaVec2 v = velocity * _deltaTime;
-	velocity = velocity - (v * drag);
+		LeaVec2 v = velocity * _deltaTime;
+		velocity = velocity - (v * drag);
 
-	gameObject->position = gameObject->position + velocity;
+		gameObject->position = gameObject->position + velocity;
+	}
 }

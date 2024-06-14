@@ -17,6 +17,7 @@ public:
 
 	// objects
 	std::vector<GameObject> objects;
+	void PhysicsUpdate();
 	void Update();
 	void Awake();
 	GameObject* Instantiate(LeaVec2, LeaVec2, std::vector<Component*>);
