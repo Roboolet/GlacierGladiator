@@ -8,6 +8,7 @@ public:
 	virtual void OnAwaken() override;
 	virtual void OnUpdate(double _deltaTime) override;
 
+	Player();
 	virtual ~Player();
 
 private:

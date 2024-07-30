@@ -7,9 +7,11 @@ class Meteor : public Component {
 public:
 	virtual void OnAwaken() override;
 	virtual void OnUpdate(double _deltaTime) override;
+	Meteor();
+	virtual ~Meteor();
 
 private:
-	const float drift = 1;
+	const float drift;
 	float randrift;
 	Rigidbody* rb;
 };

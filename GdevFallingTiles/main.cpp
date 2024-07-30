@@ -3,8 +3,14 @@
 #include "Scene.h"
 #include "InputSystem.h"
 
+#define _CRTDBG_MAP_ALLOC
+#include <stdlib.h>
+#include <crtdbg.h>
+
 int main()
 {    
+    _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+
     const int resX = 192, resY = 108;
     sf::RenderWindow window(sf::VideoMode(resX, resY), "Glacier Gladiator", sf::Style::Default);
     window.setSize(sf::Vector2u(1600,900));

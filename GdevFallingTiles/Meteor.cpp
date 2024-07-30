@@ -33,3 +33,13 @@ void Meteor::OnUpdate(double _deltaTime)
 		}
 	}
 }
+
+Meteor::Meteor()
+{
+	drift = 1;
+}
+
+Meteor::~Meteor()
+{
+	rb = nullptr;
+}

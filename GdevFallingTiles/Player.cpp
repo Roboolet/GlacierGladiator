@@ -66,6 +66,15 @@ void Player::OnUpdate(double _deltaTime)
 	
 }
 
+Player::Player()
+{
+	moveSpeed = 2;
+	jumpPower = -0.6;
+	score = 0;
+	scoreMult = 1;
+	canJump = false;
+}
+
 Player::~Player()
 {
 	rb = nullptr;
