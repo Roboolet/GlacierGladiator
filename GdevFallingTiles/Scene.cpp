@@ -11,7 +11,6 @@ Scene::Scene() {
 void Scene::CreateGameScene1()
 {
 	// this too should ideally be done in some format like json or xml, but it'll do the job
-	typedef std::vector<Component*> compVec;
 	objects.clear();
 
 	// background
@@ -184,5 +183,9 @@ void Scene::Render(sf::RenderWindow& _window, int resolutionX, int resolutionY) 
 void Scene::CloseScene() {
 
 	// destroy objects
+	for (int i = objects.size() - 1; i >= 0; i--)
+	{
+		delete(objects[i]);
+	}
 	objects.clear();
 }

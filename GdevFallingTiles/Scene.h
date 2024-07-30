@@ -4,6 +4,7 @@
 #include "GameObject.h"
 #include <chrono>
 
+typedef std::vector<Component*> compVec;
 enum Gamestate{Playing, Won, Lost};
 
 class Scene {

@@ -12,11 +12,11 @@ public:
 	virtual ~Player();
 
 private:
-	const float moveSpeed = 2;
-	const float jumpPower = -0.6;
+	float moveSpeed;
+	float jumpPower = -0.6;
 
 	int score;
 	int scoreMult;
-	bool canJump = false;
+	bool canJump;
 	Rigidbody* rb;
 };

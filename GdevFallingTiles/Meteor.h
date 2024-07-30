@@ -11,7 +11,7 @@ public:
 	virtual ~Meteor();
 
 private:
-	const float drift;
+	float drift;
 	float randrift;
 	Rigidbody* rb;
 };

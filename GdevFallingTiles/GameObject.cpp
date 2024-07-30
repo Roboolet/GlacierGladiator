@@ -84,6 +84,10 @@ GameObject::GameObject(LeaVec2 _position, LeaVec2 _scale, std::vector<Component*
 }
 
 GameObject::~GameObject() {
+	for (int i = components.size() - 1; i >= 0; i--)
+	{
+		delete(components[i]);
+	}
 	components.clear();
 	std::cout << "Scene: Destroyed GameObject " << name << this << std::endl;
 }
